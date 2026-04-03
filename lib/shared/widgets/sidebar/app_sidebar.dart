@@ -36,6 +36,7 @@ class AppSidebar extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
+                // Group 1: General
                 _SidebarItem(
                   title: 'Home',
                   icon: Icons.home_outlined,
@@ -54,6 +55,10 @@ class AppSidebar extends StatelessWidget {
                   path: '/appointments',
                   isSelected: currentPath == '/appointments',
                 ),
+                
+                _SectionDivider(),
+
+                // Group 2: Medical Records
                 _SidebarItem(
                   title: 'Prescriptions',
                   icon: Icons.medication_outlined,
@@ -78,6 +83,10 @@ class AppSidebar extends StatelessWidget {
                   path: '/documents',
                   isSelected: currentPath == '/documents',
                 ),
+
+                _SectionDivider(),
+
+                // Group 3: Financial & Profile
                 _SidebarItem(
                   title: 'Insurance',
                   icon: Icons.verified_user_outlined,
@@ -96,7 +105,10 @@ class AppSidebar extends StatelessWidget {
                   path: '/account',
                   isSelected: currentPath == '/account',
                 ),
-                const SizedBox(height: 16),
+
+                _SectionDivider(),
+
+                // Group 4: Logout
                 _SidebarItem(
                   title: 'Log Out',
                   icon: Icons.logout_outlined,
@@ -104,10 +116,25 @@ class AppSidebar extends StatelessWidget {
                   isSelected: currentPath == '/logout',
                   color: AppColors.error,
                 ),
+                const SizedBox(height: 32),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _SectionDivider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 41.0),
+      child: Divider(
+        height: 1,
+        thickness: 1,
+        color: Colors.grey.withValues(alpha: 0.2),
       ),
     );
   }
