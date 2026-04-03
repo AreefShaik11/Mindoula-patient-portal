@@ -34,7 +34,7 @@ class AppointmentCard extends StatelessWidget {
             width: 76,
             height: 76,
             decoration: BoxDecoration(
-              color: AppColors.activeIndicator,
+              color: AppColors.dateBoxBackground, // Revised light blue bg (#E9F1FD)
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -43,7 +43,7 @@ class AppointmentCard extends StatelessWidget {
                 Text(
                   date,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.dateBoxText, // Dark blue text
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -51,7 +51,7 @@ class AppointmentCard extends StatelessWidget {
                 Text(
                   month,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.dateBoxText, // Dark blue text
                     fontSize: 14,
                   ),
                 ),

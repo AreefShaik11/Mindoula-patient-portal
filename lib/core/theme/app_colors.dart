@@ -4,7 +4,7 @@ class AppColors {
   // Brand Colors
   static const Color primaryBlue = Color(0xFF3B74D1); // Royal Blue
   static const Color sidebarBackground = Color(0xFFFAF8F8); // Light Grey
-  static const Color sidebarHeader = Color(0xFF1A212B); // Dark Navy/Black
+  static const Color sidebarHeader = Color(0xFF4A5667); // Updated from Figma (Member Portal)
   
   // Neutral Colors
   static const Color background = Color(0xFFFFFFFF); // White
@@ -35,6 +35,10 @@ class AppColors {
 
   static const Color messageBeige = Color(0xFFFBE5C5);
   static const Color messageBlue = Color(0xFFE7F0FF);
+  
+  // Appointment/Date Colors
+  static const Color dateBoxBackground = Color(0xFFE9F1FD); // Royal-100 from Figma
+  static const Color dateBoxText = Color(0xFF3B74D1); // Royal Blue for contrast on light bg
 
   // Active/Hover States
   static const Color sidebarActive = Color(0xFFE5E7EB);
