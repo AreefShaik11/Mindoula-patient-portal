@@ -47,6 +47,12 @@ class DashboardScreen extends ConsumerWidget {
           child: Column(
             children: [
               _QuickActionCard(
+                title: 'View 3 new messages',
+                onTap: () => context.go('/messages'),
+                isNotification: true,
+              ),
+              const SizedBox(height: 8),
+              _QuickActionCard(
                 title: 'Request an appointment',
                 onTap: () => context.go('/appointments'),
               ),
@@ -61,11 +67,6 @@ class DashboardScreen extends ConsumerWidget {
                 onTap: () => context.go('/messages'),
               ),
               const SizedBox(height: 8),
-              _QuickActionCard(
-                title: 'View 3 new messages',
-                onTap: () => context.go('/messages'),
-                isNotification: true,
-              ),
             ],
           ),
         ),
