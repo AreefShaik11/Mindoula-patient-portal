@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v3.3.0
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
           fetch-depth: 0
 
       - name: Set up Flutter
-        uses: subosito/flutter-action@44019c92f49911516e88910408ca4fe567746401 # v2.8.0
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
         with:
           channel: 'stable'
 
@@ -30,7 +30,7 @@ jobs:
         run: flutter test --coverage
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@a292850901e749c9f0b151e360e2908867a57a12 # v2.0.2
+        uses: SonarSource/sonarcloud-github-action@c25d2e7e3def96d0d1781000d3c429da22cd6252 # v2.0.2
         with:
           args: >
             -Dsonar.projectKey=AreefShaik11_Mindoula-patient-portal
