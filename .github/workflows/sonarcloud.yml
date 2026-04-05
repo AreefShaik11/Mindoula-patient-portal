@@ -16,7 +16,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
+
+      - name: Set up Java 17
+        uses: actions/setup-java@387ac29b308b003c05ba672421ca11aa45483b99 # v3.11.0
+        with:
+          java-version: '17'
+          distribution: 'zulu'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
@@ -29,13 +35,20 @@ jobs:
       - name: Run Tests and Generate Coverage
         run: flutter test --coverage
 
+      - name: Download and setup Sonar Scanner
+        run: |
+          SONAR_SCANNER_VERSION=5.0.1.3006
+          SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+          curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+          unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+          echo "$SONAR_SCANNER_HOME/bin" >> $GITHUB_PATH
+
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@c25d2e7e3def96d0d1781000d3c429da22cd6252 # v2.0.2
-        with:
-          args: >
-            -Dsonar.projectKey=AreefShaik11_Mindoula-patient-portal
-            -Dsonar.organization=areefshaik-prasthana
-            -Dsonar.dart.lcov.reportPath=coverage/lcov.info
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=AreefShaik11_Mindoula-patient-portal \
+            -Dsonar.organization=areefshaik-prasthana \
+            -Dsonar.dart.lcov.reportPath=coverage/lcov.info \
             -Dsonar.exclusions=**/*.g.dart,**/*.freezed.dart,lib/generated/**,**/*.js,**/*.ts,**/*.css,web/**,ios/**,android/**,windows/**,linux/**,macos/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
