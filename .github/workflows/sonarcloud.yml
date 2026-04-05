@@ -13,40 +13,43 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
       - name: Install dependencies
         run: flutter pub get
+
       - name: Generate files
         run: dart run build_runner build --delete-conflicting-outputs
+
       - name: Run tests with coverage
         run: flutter test --coverage
-      - name: Normalize coverage paths
+
+      - name: Normalize coverage paths to absolute
         run: |
           sed -i "s|SF:lib/|SF:$GITHUB_WORKSPACE/lib/|g" coverage/lcov.info
+          echo "=== Coverage verification ==="
+          echo "Lines found: $(grep 'LF:' coverage/lcov.info | awk -F: '{sum+=$2} END{print sum}')"
+          echo "Lines hit: $(grep 'LH:' coverage/lcov.info | awk -F: '{sum+=$2} END{print sum}')"
+          head -6 coverage/lcov.info
+
       - name: Install SonarScanner
         run: |
           mkdir -p $HOME/.sonar
-          curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          curl -sSLo $HOME/.sonar/sonar-scanner.zip \
+            https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
           unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
           echo "$HOME/.sonar/sonar-scanner-5.0.1.3006-linux/bin" >> $GITHUB_PATH
+
       - name: Run SonarCloud Scan
         run: |
           sonar-scanner \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.projectKey=AreefShaik11_Mindoula-patient-portal \
-            -Dsonar.organization=areefshaik-prasthana \
-            -Dsonar.sources=lib \
-            -Dsonar.tests=test \
-            -Dsonar.test.inclusions=test/**/*_test.dart \
-            -Dsonar.dart.lcov.reportPath=coverage/lcov.info \
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
             -Dsonar.projectBaseDir=$GITHUB_WORKSPACE \
-            -Dsonar.scm.provider=git \
-            -Dsonar.verbose=true \
-            -Dsonar.exclusions=**/*.g.dart,**/*.freezed.dart,lib/generated/**,**/*.js,**/*.ts,**/*.css,web/**,ios/**,android/**,windows/**,linux/**,macos/**
+            -Dsonar.scm.provider=git
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mindoula_patient_portal/main.dart';
-import 'package:mindoula_patient_portal/core/theme/app_theme.dart';
 import 'package:mindoula_patient_portal/core/theme/app_colors.dart';
-import 'package:mindoula_patient_portal/core/theme/app_typography.dart';
 import 'package:mindoula_patient_portal/core/constants/app_constants.dart';
+
 import 'package:mindoula_patient_portal/modules/dashboard/viewmodel/dashboard_view_model.dart';
 import 'package:mindoula_patient_portal/modules/dashboard/model/dashboard_state.dart';
 import 'package:mindoula_patient_portal/modules/billing/model/billing_model.dart';
