@@ -23,6 +23,9 @@ jobs:
         run: dart run build_runner build --delete-conflicting-outputs
       - name: Run tests with coverage
         run: flutter test --coverage
+      - name: Normalize coverage paths
+        run: |
+          sed -i "s|SF:lib/|SF:$GITHUB_WORKSPACE/lib/|g" coverage/lcov.info
       - name: Install SonarScanner
         run: |
           mkdir -p $HOME/.sonar
@@ -38,8 +41,9 @@ jobs:
             -Dsonar.sources=lib \
             -Dsonar.tests=test \
             -Dsonar.test.inclusions=test/**/*_test.dart \
-            -Dsonar.dart.lcov.reportPath=${{ github.workspace }}/coverage/lcov.info \
-            -Dsonar.projectBaseDir=${{ github.workspace }} \
+            -Dsonar.dart.lcov.reportPath=coverage/lcov.info \
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
+            -Dsonar.projectBaseDir=$GITHUB_WORKSPACE \
             -Dsonar.scm.provider=git \
             -Dsonar.verbose=true \
             -Dsonar.exclusions=**/*.g.dart,**/*.freezed.dart,lib/generated/**,**/*.js,**/*.ts,**/*.css,web/**,ios/**,android/**,windows/**,linux/**,macos/**
