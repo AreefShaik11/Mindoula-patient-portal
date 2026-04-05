@@ -27,15 +27,9 @@ class ProfileItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '$label:',
-                  style: AppTypography.labelStyle,
-                ),
+                Text('$label:', style: AppTypography.labelStyle),
                 const SizedBox(height: 4),
-                Text(
-                  value,
-                  style: AppTypography.contentStyle,
-                ),
+                Text(value, style: AppTypography.contentStyle),
               ],
             ),
           ),

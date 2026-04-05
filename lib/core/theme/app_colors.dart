@@ -5,7 +5,7 @@ class AppColors {
   static const Color primaryBlue = Color(0xFF3B74D1); // Royal Blue
   static const Color sidebarBackground = Color(0xFFFAF8F8); // Light Grey
   static const Color sidebarHeader = Color(0xFF4A5667); // Slate Gray from Figma
-  
+
   // Neutral Colors
   static const Color background = Color(0xFFF8F9FA); // Light Gray Background
   static const Color cardBackground = Color(0xFFFFFFFF);
@@ -16,7 +16,7 @@ class AppColors {
   static const Color textPrimary = Color(0xFF393B3F); // Charcoal
   static const Color textSecondary = Color(0xFF6B7280);
   static const Color textWhite = Color(0xFFFFFFFF);
-  
+
   // Status Colors
   static const Color success = Color(0xFF10B981);
   static const Color error = Color(0xFFEF4444);
@@ -36,10 +36,10 @@ class AppColors {
 
   static const Color messageBeige = Color(0xFFFBE5C5);
   static const Color messageBlue = Color(0xFFEAEEF7);
-  
+
   // Appointment/Date Colors
   static const Color dateBoxBackground = Color(0xFFE9F1FD); // Royal-100
-  static const Color dateBoxText = Color(0xFF3B74D1); 
+  static const Color dateBoxText = Color(0xFF3B74D1);
 
   // Interaction States
   static const Color sidebarActive = Color(0xFFE5E7EB);

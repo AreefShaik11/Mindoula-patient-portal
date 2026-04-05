@@ -29,7 +29,7 @@ class AccountViewModel extends _$AccountViewModel {
   void toggleSmsNotifications(bool value) {
     state = state.copyWith(smsNotifications: value);
   }
-  
+
   Future<void> saveChanges() async {
     state = state.copyWith(isLoading: true);
     await Future.delayed(const Duration(seconds: 1));

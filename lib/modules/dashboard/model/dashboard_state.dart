@@ -15,5 +15,6 @@ class DashboardState with _$DashboardState {
     @Default(false) bool isLoading,
   }) = _DashboardState;
 
-  factory DashboardState.fromJson(Map<String, dynamic> json) => _$DashboardStateFromJson(json);
+  factory DashboardState.fromJson(Map<String, dynamic> json) =>
+      _$DashboardStateFromJson(json);
 }

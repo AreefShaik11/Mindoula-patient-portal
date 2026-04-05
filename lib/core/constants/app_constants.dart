@@ -10,9 +10,22 @@ class AppConstants {
   static const double cardPadding = 16.0;
   static const double cardRadius = 16.0;
   static const double gridGap = 8.0;
-  
+
   // Sidebar groupings
-  static const List<String> sidebarSection1 = ['Home', 'Messages', 'Appointments'];
-  static const List<String> sidebarSection2 = ['Prescriptions', 'Lab results', 'Questionnaires', 'Documents'];
-  static const List<String> sidebarSection3 = ['Insurance', 'Billing', 'Account'];
+  static const List<String> sidebarSection1 = [
+    'Home',
+    'Messages',
+    'Appointments',
+  ];
+  static const List<String> sidebarSection2 = [
+    'Prescriptions',
+    'Lab results',
+    'Questionnaires',
+    'Documents',
+  ];
+  static const List<String> sidebarSection3 = [
+    'Insurance',
+    'Billing',
+    'Account',
+  ];
 }

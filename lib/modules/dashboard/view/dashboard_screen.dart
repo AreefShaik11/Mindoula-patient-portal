@@ -16,10 +16,7 @@ class DashboardScreen extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Hello, ${state.userName}',
-          style: AppTypography.h2,
-        ),
+        Text('Hello, ${state.userName}', style: AppTypography.h2),
         const SizedBox(height: 32),
         const Text(
           'Upcoming appointment',
@@ -31,16 +28,14 @@ class DashboardScreen extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         AppointmentCard(
-          title: state.nextAppointmentType ?? 'Adult Psychiatry Case Management',
+          title:
+              state.nextAppointmentType ?? 'Adult Psychiatry Case Management',
           date: state.nextAppointmentDate ?? '14',
           month: state.nextAppointmentMonth ?? 'April',
           onJoin: () {},
         ),
         const SizedBox(height: 24),
-        Text(
-          'How can we help you today?',
-          style: AppTypography.sectionHeader,
-        ),
+        Text('How can we help you today?', style: AppTypography.sectionHeader),
         const SizedBox(height: 16),
         SizedBox(
           width: 653,

@@ -15,5 +15,6 @@ class AccountState with _$AccountState {
     String? errorMessage,
   }) = _AccountState;
 
-  factory AccountState.fromJson(Map<String, dynamic> json) => _$AccountStateFromJson(json);
+  factory AccountState.fromJson(Map<String, dynamic> json) =>
+      _$AccountStateFromJson(json);
 }

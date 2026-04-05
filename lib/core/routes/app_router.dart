@@ -30,7 +30,8 @@ GoRouter appRouter(AppRouterRef ref) {
           ),
           GoRoute(
             path: '/appointments',
-            builder: (context, state) => const _PlaceholderScreen(title: 'Appointments'),
+            builder: (context, state) =>
+                const _PlaceholderScreen(title: 'Appointments'),
           ),
           GoRoute(
             path: '/prescriptions',
@@ -38,19 +39,23 @@ GoRouter appRouter(AppRouterRef ref) {
           ),
           GoRoute(
             path: '/lab-results',
-            builder: (context, state) => const _PlaceholderScreen(title: 'Lab Results'),
+            builder: (context, state) =>
+                const _PlaceholderScreen(title: 'Lab Results'),
           ),
           GoRoute(
             path: '/questionnaires',
-            builder: (context, state) => const _PlaceholderScreen(title: 'Questionnaires'),
+            builder: (context, state) =>
+                const _PlaceholderScreen(title: 'Questionnaires'),
           ),
           GoRoute(
             path: '/documents',
-            builder: (context, state) => const _PlaceholderScreen(title: 'Documents'),
+            builder: (context, state) =>
+                const _PlaceholderScreen(title: 'Documents'),
           ),
           GoRoute(
             path: '/insurance',
-            builder: (context, state) => const _PlaceholderScreen(title: 'Insurance'),
+            builder: (context, state) =>
+                const _PlaceholderScreen(title: 'Insurance'),
           ),
           GoRoute(
             path: '/billing',
@@ -62,7 +67,8 @@ GoRouter appRouter(AppRouterRef ref) {
           ),
           GoRoute(
             path: '/logout',
-            builder: (context, state) => const _PlaceholderScreen(title: 'Logging Out...'),
+            builder: (context, state) =>
+                const _PlaceholderScreen(title: 'Logging Out...'),
           ),
         ],
       ),
@@ -76,6 +82,8 @@ class _PlaceholderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Coming Soon: $title', style: const TextStyle(fontSize: 24)));
+    return Center(
+      child: Text('Coming Soon: $title', style: const TextStyle(fontSize: 24)),
+    );
   }
 }

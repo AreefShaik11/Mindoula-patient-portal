@@ -25,7 +25,8 @@ class MessageViewModel extends _$MessageViewModel {
           ),
           Message(
             id: 'm2',
-            content: "Your results are mostly within range, but I'd like to discuss the iron levels.",
+            content:
+                "Your results are mostly within range, but I'd like to discuss the iron levels.",
             timestamp: now.subtract(const Duration(hours: 1)),
             senderType: MessageSenderType.provider,
             type: MessageType.text,
@@ -59,10 +60,7 @@ class MessageViewModel extends _$MessageViewModel {
       ),
     ];
 
-    return {
-      'threads': threads,
-      'selectedThreadId': threads.first.id,
-    };
+    return {'threads': threads, 'selectedThreadId': threads.first.id};
   }
 
   void selectThread(String id) {

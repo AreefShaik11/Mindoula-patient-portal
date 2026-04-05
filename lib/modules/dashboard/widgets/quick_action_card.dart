@@ -47,8 +47,8 @@ class QuickActionCard extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: isNotification 
-                    ? AppTypography.notificationText 
+                style: isNotification
+                    ? AppTypography.notificationText
                     : AppTypography.h3.copyWith(fontWeight: FontWeight.w500),
               ),
             ),

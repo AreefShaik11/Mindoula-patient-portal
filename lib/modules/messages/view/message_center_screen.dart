@@ -30,22 +30,49 @@ class MessageCenterScreen extends ConsumerWidget {
               return ListTile(
                 selected: t.id == selectedId,
                 selectedTileColor: AppColors.messageBlue.withValues(alpha: 0.3),
-                title: Text(t.participantName, style: AppTypography.h3.copyWith(fontSize: 16)),
-                subtitle: Text(t.lastMessage, maxLines: 1, overflow: TextOverflow.ellipsis),
+                title: Text(
+                  t.participantName,
+                  style: AppTypography.h3.copyWith(fontSize: 16),
+                ),
+                subtitle: Text(
+                  t.lastMessage,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(DateFormat('hh:mm').format(t.lastTimestamp), style: TextStyle(fontSize: 11, color: AppColors.textSecondary)),
+                    Text(
+                      DateFormat('hh:mm').format(t.lastTimestamp),
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
                     if (t.unreadCount > 0)
                       Container(
                         margin: const EdgeInsets.only(top: 4),
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(color: AppColors.primaryBlue, borderRadius: BorderRadius.circular(10)),
-                        child: Text('${t.unreadCount}', style: const TextStyle(color: Colors.white, fontSize: 10)),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryBlue,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          '${t.unreadCount}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                          ),
+                        ),
                       ),
                   ],
                 ),
-                onTap: () => ref.read(messageViewModelProvider.notifier).selectThread(t.id),
+                onTap: () => ref
+                    .read(messageViewModelProvider.notifier)
+                    .selectThread(t.id),
               );
             },
           ),
@@ -60,9 +87,17 @@ class MessageCenterScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(24.0),
                 child: Row(
                   children: [
-                    CircleAvatar(backgroundColor: AppColors.primaryBlue.withValues(alpha: 0.1), child: Text(selectedThread.participantName[0])),
+                    CircleAvatar(
+                      backgroundColor: AppColors.primaryBlue.withValues(
+                        alpha: 0.1,
+                      ),
+                      child: Text(selectedThread.participantName[0]),
+                    ),
                     const SizedBox(width: 12),
-                    Text(selectedThread.participantName, style: AppTypography.h3),
+                    Text(
+                      selectedThread.participantName,
+                      style: AppTypography.h3,
+                    ),
                   ],
                 ),
               ),
@@ -84,7 +119,13 @@ class MessageCenterScreen extends ConsumerWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Type a message...',
-                    suffixIcon: IconButton(icon: const Icon(Icons.send_rounded, color: AppColors.primaryBlue), onPressed: () {}),
+                    suffixIcon: IconButton(
+                      icon: const Icon(
+                        Icons.send_rounded,
+                        color: AppColors.primaryBlue,
+                      ),
+                      onPressed: () {},
+                    ),
                   ),
                 ),
               ),
@@ -121,7 +162,10 @@ class _MessageBubble extends StatelessWidget {
           children: [
             Text(
               message.content,
-              style: TextStyle(color: isUser ? Colors.white : AppColors.textPrimary, fontSize: 16),
+              style: TextStyle(
+                color: isUser ? Colors.white : AppColors.textPrimary,
+                fontSize: 16,
+              ),
             ),
             if (message.type == MessageType.appointmentRequest)
               Padding(
@@ -138,7 +182,11 @@ class _MessageBubble extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               DateFormat('hh:mm').format(message.timestamp),
-              style: TextStyle(color: (isUser ? Colors.white : AppColors.textSecondary).withValues(alpha: 0.7), fontSize: 10),
+              style: TextStyle(
+                color: (isUser ? Colors.white : AppColors.textSecondary)
+                    .withValues(alpha: 0.7),
+                fontSize: 10,
+              ),
             ),
           ],
         ),

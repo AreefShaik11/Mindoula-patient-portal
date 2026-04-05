@@ -7,12 +7,7 @@ class SectionCard extends StatelessWidget {
   final Widget child;
   final List<Widget>? actions;
 
-  const SectionCard({
-    super.key,
-    this.title,
-    required this.child,
-    this.actions,
-  });
+  const SectionCard({super.key, this.title, required this.child, this.actions});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +22,7 @@ class SectionCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   if (title != null)
-                    Text(
-                      title!,
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
+                    Text(title!, style: Theme.of(context).textTheme.titleLarge),
                   if (actions != null) Row(children: actions!),
                 ],
               ),

@@ -48,9 +48,18 @@ class _BalanceCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Outstanding balance', style: TextStyle(fontSize: 14, color: AppColors.textSecondary)),
+              const Text(
+                'Outstanding balance',
+                style: TextStyle(fontSize: 14, color: AppColors.textSecondary),
+              ),
               const SizedBox(height: 8),
-              Text('\$${balance.toStringAsFixed(2)}', style: AppTypography.h1.copyWith(fontSize: 32, color: AppColors.textPrimary)),
+              Text(
+                '\$${balance.toStringAsFixed(2)}',
+                style: AppTypography.h1.copyWith(
+                  fontSize: 32,
+                  color: AppColors.textPrimary,
+                ),
+              ),
             ],
           ),
           SizedBox(
@@ -60,7 +69,9 @@ class _BalanceCard extends StatelessWidget {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryBlue,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
               child: const Text('Pay Now'),
             ),
@@ -94,18 +105,23 @@ class _TransactionTable extends StatelessWidget {
           DataColumn(label: Text('Action')),
         ],
         rows: transactions.map((t) {
-          return DataRow(cells: [
-            DataCell(Text(DateFormat('MM/dd/yyyy').format(t.date))),
-            DataCell(Text(t.description)),
-            DataCell(Text('\$${t.amount.toStringAsFixed(2)}')),
-            DataCell(_StatusIndicator(status: t.status)),
-            DataCell(
-              TextButton(
-                onPressed: () {},
-                child: const Text('View Bill', style: TextStyle(color: AppColors.primaryBlue)),
+          return DataRow(
+            cells: [
+              DataCell(Text(DateFormat('MM/dd/yyyy').format(t.date))),
+              DataCell(Text(t.description)),
+              DataCell(Text('\$${t.amount.toStringAsFixed(2)}')),
+              DataCell(_StatusIndicator(status: t.status)),
+              DataCell(
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'View Bill',
+                    style: TextStyle(color: AppColors.primaryBlue),
+                  ),
+                ),
               ),
-            ),
-          ]);
+            ],
+          );
         }).toList(),
       ),
     );
@@ -141,7 +157,14 @@ class _StatusIndicator extends StatelessWidget {
           decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         ),
         const SizedBox(width: 8),
-        Text(status.name.substring(0, 1).toUpperCase() + status.name.substring(1), style: TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.w500)),
+        Text(
+          status.name.substring(0, 1).toUpperCase() + status.name.substring(1),
+          style: TextStyle(
+            color: color,
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ],
     );
   }

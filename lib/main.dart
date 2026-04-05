@@ -4,11 +4,7 @@ import 'core/theme/app_theme.dart';
 import 'core/routes/app_router.dart';
 
 void main() {
-  runApp(
-    const ProviderScope(
-      child: MindoulaPatientPortalApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: MindoulaPatientPortalApp()));
 }
 
 class MindoulaPatientPortalApp extends ConsumerWidget {

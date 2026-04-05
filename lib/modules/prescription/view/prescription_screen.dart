@@ -20,12 +20,16 @@ class PrescriptionScreen extends ConsumerWidget {
         const SizedBox(height: 32),
         _PrescriptionSection(
           title: 'Active prescriptions',
-          items: prescriptions.where((p) => p.status == PrescriptionStatus.active).toList(),
+          items: prescriptions
+              .where((p) => p.status == PrescriptionStatus.active)
+              .toList(),
         ),
         const SizedBox(height: 48),
         _PrescriptionSection(
           title: 'Refill requests & history',
-          items: prescriptions.where((p) => p.status != PrescriptionStatus.active).toList(),
+          items: prescriptions
+              .where((p) => p.status != PrescriptionStatus.active)
+              .toList(),
         ),
       ],
     );
@@ -74,9 +78,17 @@ class _PrescriptionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(prescription.drugName, style: AppTypography.contentStyle.copyWith(fontSize: 18)),
+                Text(
+                  prescription.drugName,
+                  style: AppTypography.contentStyle.copyWith(fontSize: 18),
+                ),
                 const SizedBox(height: 4),
-                Text('${prescription.dosage} - ${prescription.frequency}', style: AppTypography.bodyMedium.copyWith(color: AppColors.textSecondary)),
+                Text(
+                  '${prescription.dosage} - ${prescription.frequency}',
+                  style: AppTypography.bodyMedium.copyWith(
+                    color: AppColors.textSecondary,
+                  ),
+                ),
               ],
             ),
           ),
@@ -99,7 +111,9 @@ class _PrescriptionCard extends StatelessWidget {
               onPressed: prescription.refillsRemaining > 0 ? () {} : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryBlue,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
               child: const Text('Request Refill'),
             ),

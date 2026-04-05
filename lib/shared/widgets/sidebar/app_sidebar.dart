@@ -24,12 +24,9 @@ class AppSidebar extends StatelessWidget {
             color: AppColors.sidebarHeader,
             padding: const EdgeInsets.symmetric(horizontal: 41.0),
             alignment: Alignment.centerLeft,
-            child: Text(
-              'Member Portal',
-              style: AppTypography.sidebarHeader,
-            ),
+            child: Text('Member Portal', style: AppTypography.sidebarHeader),
           ),
-          
+
           const SizedBox(height: 32),
           Expanded(
             child: ListView(
@@ -180,11 +177,7 @@ class _SectionDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 41.0),
-      child: Divider(
-        height: 1,
-        thickness: 1,
-        color: AppColors.divider,
-      ),
+      child: Divider(height: 1, thickness: 1, color: AppColors.divider),
     );
   }
 }

@@ -107,12 +107,18 @@ class AccountScreen extends ConsumerWidget {
                     SingleChildScrollView(
                       child: Column(
                         children: [
-                          const _DelegateItem(name: 'John Doe', relation: 'Father'),
+                          const _DelegateItem(
+                            name: 'John Doe',
+                            relation: 'Father',
+                          ),
                           const Divider(),
                           const SizedBox(height: 16),
                           TextButton(
                             onPressed: () {},
-                            child: const Text('+ Add Delegate', style: TextStyle(color: AppColors.primaryBlue)),
+                            child: const Text(
+                              '+ Add Delegate',
+                              style: TextStyle(color: AppColors.primaryBlue),
+                            ),
                           ),
                         ],
                       ),
@@ -126,7 +132,7 @@ class AccountScreen extends ConsumerWidget {
       ],
     );
   }
-  
+
   static void _doNothing() {}
 }
 
