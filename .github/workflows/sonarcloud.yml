@@ -38,7 +38,10 @@ jobs:
             -Dsonar.sources=lib \
             -Dsonar.tests=test \
             -Dsonar.test.inclusions=test/**/*_test.dart \
-            -Dsonar.dart.lcov.reportPath=coverage/lcov.info \
+            -Dsonar.dart.lcov.reportPath=${{ github.workspace }}/coverage/lcov.info \
+            -Dsonar.projectBaseDir=${{ github.workspace }} \
+            -Dsonar.scm.provider=git \
+            -Dsonar.verbose=true \
             -Dsonar.exclusions=**/*.g.dart,**/*.freezed.dart,lib/generated/**,**/*.js,**/*.ts,**/*.css,web/**,ios/**,android/**,windows/**,linux/**,macos/**
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

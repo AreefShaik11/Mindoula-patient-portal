@@ -64,11 +64,11 @@ class AccountScreen extends ConsumerWidget {
                             onTap: () {},
                           ),
                           const Divider(),
-                          ProfileItem(
+                          const ProfileItem(
                             label: 'Password',
                             value: '************',
                             actionLabel: 'Change',
-                            onTap: () {},
+                            onTap: _doNothing,
                           ),
                           const Divider(),
                           ProfileItem(
@@ -107,7 +107,7 @@ class AccountScreen extends ConsumerWidget {
                     SingleChildScrollView(
                       child: Column(
                         children: [
-                          _DelegateItem(name: 'John Doe', relation: 'Father'),
+                          const _DelegateItem(name: 'John Doe', relation: 'Father'),
                           const Divider(),
                           const SizedBox(height: 16),
                           TextButton(
@@ -126,6 +126,8 @@ class AccountScreen extends ConsumerWidget {
       ],
     );
   }
+  
+  static void _doNothing() {}
 }
 
 class _NotificationToggle extends StatelessWidget {
