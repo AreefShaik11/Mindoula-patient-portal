@@ -45,7 +45,7 @@ class ProfileItem extends StatelessWidget {
             child: OutlinedButton(
               onPressed: onTap,
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: AppColors.activeIndicator, width: 1),
+                side: const BorderSide(color: AppColors.primaryBlue, width: 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -54,7 +54,7 @@ class ProfileItem extends StatelessWidget {
               child: Text(
                 actionLabel,
                 style: const TextStyle(
-                  color: AppColors.activeIndicator,
+                  color: AppColors.primaryBlue,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),

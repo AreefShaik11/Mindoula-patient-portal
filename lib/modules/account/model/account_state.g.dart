@@ -6,8 +6,8 @@ part of 'account_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AccountState _$AccountStateFromJson(Map<String, dynamic> json) =>
-    _AccountState(
+_$AccountStateImpl _$$AccountStateImplFromJson(Map<String, dynamic> json) =>
+    _$AccountStateImpl(
       fullName: json['fullName'] as String? ?? 'Jane Doe',
       email: json['email'] as String? ?? 'jane.doe@mail.com',
       language: json['language'] as String? ?? 'English',
@@ -17,7 +17,7 @@ _AccountState _$AccountStateFromJson(Map<String, dynamic> json) =>
       errorMessage: json['errorMessage'] as String?,
     );
 
-Map<String, dynamic> _$AccountStateToJson(_AccountState instance) =>
+Map<String, dynamic> _$$AccountStateImplToJson(_$AccountStateImpl instance) =>
     <String, dynamic>{
       'fullName': instance.fullName,
       'email': instance.email,

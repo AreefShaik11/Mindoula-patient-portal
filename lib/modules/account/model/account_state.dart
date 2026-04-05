@@ -4,7 +4,7 @@ part 'account_state.freezed.dart';
 part 'account_state.g.dart';
 
 @freezed
-abstract class AccountState with _$AccountState {
+class AccountState with _$AccountState {
   const factory AccountState({
     @Default('Jane Doe') String fullName,
     @Default('jane.doe@mail.com') String email,

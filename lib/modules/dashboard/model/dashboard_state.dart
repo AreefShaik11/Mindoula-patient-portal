@@ -4,11 +4,12 @@ part 'dashboard_state.freezed.dart';
 part 'dashboard_state.g.dart';
 
 @freezed
-abstract class DashboardState with _$DashboardState {
+class DashboardState with _$DashboardState {
   const factory DashboardState({
     @Default('Jane') String userName,
     String? nextAppointmentType,
     String? nextAppointmentDate,
+    String? nextAppointmentMonth,
     String? nextAppointmentTime,
     String? nextAppointmentDoctor,
     @Default(false) bool isLoading,
