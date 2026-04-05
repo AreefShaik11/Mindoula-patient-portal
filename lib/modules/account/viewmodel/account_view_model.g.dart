@@ -6,20 +6,20 @@ part of 'account_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$accountViewModelHash() => r'b001f2f420e4e9ff6b1d516a1a8c1f73d1cdf468';
+String _$accountViewModelHash() => r'61a828cbf293a919e7daf0d133db2d87bfd1cc2f';
 
 /// See also [AccountViewModel].
 @ProviderFor(AccountViewModel)
 final accountViewModelProvider =
     AutoDisposeNotifierProvider<AccountViewModel, AccountState>.internal(
-      AccountViewModel.new,
-      name: r'accountViewModelProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$accountViewModelHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  AccountViewModel.new,
+  name: r'accountViewModelProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$accountViewModelHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$AccountViewModel = AutoDisposeNotifier<AccountState>;
 // ignore_for_file: type=lint

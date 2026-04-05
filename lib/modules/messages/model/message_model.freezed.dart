@@ -12,8 +12,7 @@ part of 'message_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Message _$MessageFromJson(Map<String, dynamic> json) {
   return _Message.fromJson(json);
@@ -43,15 +42,14 @@ abstract class $MessageCopyWith<$Res> {
   factory $MessageCopyWith(Message value, $Res Function(Message) then) =
       _$MessageCopyWithImpl<$Res, Message>;
   @useResult
-  $Res call({
-    String id,
-    String content,
-    DateTime timestamp,
-    MessageSenderType senderType,
-    MessageType type,
-    String? actionLabel,
-    String? actionType,
-  });
+  $Res call(
+      {String id,
+      String content,
+      DateTime timestamp,
+      MessageSenderType senderType,
+      MessageType type,
+      String? actionLabel,
+      String? actionType});
 }
 
 /// @nodoc
@@ -77,59 +75,54 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
     Object? actionLabel = freezed,
     Object? actionType = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            content: null == content
-                ? _value.content
-                : content // ignore: cast_nullable_to_non_nullable
-                      as String,
-            timestamp: null == timestamp
-                ? _value.timestamp
-                : timestamp // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            senderType: null == senderType
-                ? _value.senderType
-                : senderType // ignore: cast_nullable_to_non_nullable
-                      as MessageSenderType,
-            type: null == type
-                ? _value.type
-                : type // ignore: cast_nullable_to_non_nullable
-                      as MessageType,
-            actionLabel: freezed == actionLabel
-                ? _value.actionLabel
-                : actionLabel // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            actionType: freezed == actionType
-                ? _value.actionType
-                : actionType // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      senderType: null == senderType
+          ? _value.senderType
+          : senderType // ignore: cast_nullable_to_non_nullable
+              as MessageSenderType,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as MessageType,
+      actionLabel: freezed == actionLabel
+          ? _value.actionLabel
+          : actionLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      actionType: freezed == actionType
+          ? _value.actionType
+          : actionType // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$MessageImplCopyWith<$Res> implements $MessageCopyWith<$Res> {
   factory _$$MessageImplCopyWith(
-    _$MessageImpl value,
-    $Res Function(_$MessageImpl) then,
-  ) = __$$MessageImplCopyWithImpl<$Res>;
+          _$MessageImpl value, $Res Function(_$MessageImpl) then) =
+      __$$MessageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String content,
-    DateTime timestamp,
-    MessageSenderType senderType,
-    MessageType type,
-    String? actionLabel,
-    String? actionType,
-  });
+  $Res call(
+      {String id,
+      String content,
+      DateTime timestamp,
+      MessageSenderType senderType,
+      MessageType type,
+      String? actionLabel,
+      String? actionType});
 }
 
 /// @nodoc
@@ -137,9 +130,8 @@ class __$$MessageImplCopyWithImpl<$Res>
     extends _$MessageCopyWithImpl<$Res, _$MessageImpl>
     implements _$$MessageImplCopyWith<$Res> {
   __$$MessageImplCopyWithImpl(
-    _$MessageImpl _value,
-    $Res Function(_$MessageImpl) _then,
-  ) : super(_value, _then);
+      _$MessageImpl _value, $Res Function(_$MessageImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of Message
   /// with the given fields replaced by the non-null parameter values.
@@ -154,53 +146,50 @@ class __$$MessageImplCopyWithImpl<$Res>
     Object? actionLabel = freezed,
     Object? actionType = freezed,
   }) {
-    return _then(
-      _$MessageImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        content: null == content
-            ? _value.content
-            : content // ignore: cast_nullable_to_non_nullable
-                  as String,
-        timestamp: null == timestamp
-            ? _value.timestamp
-            : timestamp // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        senderType: null == senderType
-            ? _value.senderType
-            : senderType // ignore: cast_nullable_to_non_nullable
-                  as MessageSenderType,
-        type: null == type
-            ? _value.type
-            : type // ignore: cast_nullable_to_non_nullable
-                  as MessageType,
-        actionLabel: freezed == actionLabel
-            ? _value.actionLabel
-            : actionLabel // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        actionType: freezed == actionType
-            ? _value.actionType
-            : actionType // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$MessageImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      senderType: null == senderType
+          ? _value.senderType
+          : senderType // ignore: cast_nullable_to_non_nullable
+              as MessageSenderType,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as MessageType,
+      actionLabel: freezed == actionLabel
+          ? _value.actionLabel
+          : actionLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      actionType: freezed == actionType
+          ? _value.actionType
+          : actionType // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$MessageImpl implements _Message {
-  const _$MessageImpl({
-    required this.id,
-    required this.content,
-    required this.timestamp,
-    required this.senderType,
-    required this.type,
-    this.actionLabel,
-    this.actionType,
-  });
+  const _$MessageImpl(
+      {required this.id,
+      required this.content,
+      required this.timestamp,
+      required this.senderType,
+      required this.type,
+      this.actionLabel,
+      this.actionType});
 
   factory _$MessageImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageImplFromJson(json);
@@ -245,16 +234,8 @@ class _$MessageImpl implements _Message {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    content,
-    timestamp,
-    senderType,
-    type,
-    actionLabel,
-    actionType,
-  );
+  int get hashCode => Object.hash(runtimeType, id, content, timestamp,
+      senderType, type, actionLabel, actionType);
 
   /// Create a copy of Message
   /// with the given fields replaced by the non-null parameter values.
@@ -266,20 +247,21 @@ class _$MessageImpl implements _Message {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MessageImplToJson(this);
+    return _$$MessageImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _Message implements Message {
-  const factory _Message({
-    required final String id,
-    required final String content,
-    required final DateTime timestamp,
-    required final MessageSenderType senderType,
-    required final MessageType type,
-    final String? actionLabel,
-    final String? actionType,
-  }) = _$MessageImpl;
+  const factory _Message(
+      {required final String id,
+      required final String content,
+      required final DateTime timestamp,
+      required final MessageSenderType senderType,
+      required final MessageType type,
+      final String? actionLabel,
+      final String? actionType}) = _$MessageImpl;
 
   factory _Message.fromJson(Map<String, dynamic> json) = _$MessageImpl.fromJson;
 
@@ -332,18 +314,16 @@ mixin _$MessageThread {
 /// @nodoc
 abstract class $MessageThreadCopyWith<$Res> {
   factory $MessageThreadCopyWith(
-    MessageThread value,
-    $Res Function(MessageThread) then,
-  ) = _$MessageThreadCopyWithImpl<$Res, MessageThread>;
+          MessageThread value, $Res Function(MessageThread) then) =
+      _$MessageThreadCopyWithImpl<$Res, MessageThread>;
   @useResult
-  $Res call({
-    String id,
-    String participantName,
-    String lastMessage,
-    DateTime lastTimestamp,
-    List<Message> messages,
-    int unreadCount,
-  });
+  $Res call(
+      {String id,
+      String participantName,
+      String lastMessage,
+      DateTime lastTimestamp,
+      List<Message> messages,
+      int unreadCount});
 }
 
 /// @nodoc
@@ -368,35 +348,32 @@ class _$MessageThreadCopyWithImpl<$Res, $Val extends MessageThread>
     Object? messages = null,
     Object? unreadCount = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            participantName: null == participantName
-                ? _value.participantName
-                : participantName // ignore: cast_nullable_to_non_nullable
-                      as String,
-            lastMessage: null == lastMessage
-                ? _value.lastMessage
-                : lastMessage // ignore: cast_nullable_to_non_nullable
-                      as String,
-            lastTimestamp: null == lastTimestamp
-                ? _value.lastTimestamp
-                : lastTimestamp // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            messages: null == messages
-                ? _value.messages
-                : messages // ignore: cast_nullable_to_non_nullable
-                      as List<Message>,
-            unreadCount: null == unreadCount
-                ? _value.unreadCount
-                : unreadCount // ignore: cast_nullable_to_non_nullable
-                      as int,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      participantName: null == participantName
+          ? _value.participantName
+          : participantName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastMessage: null == lastMessage
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastTimestamp: null == lastTimestamp
+          ? _value.lastTimestamp
+          : lastTimestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      messages: null == messages
+          ? _value.messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<Message>,
+      unreadCount: null == unreadCount
+          ? _value.unreadCount
+          : unreadCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
   }
 }
 
@@ -404,19 +381,17 @@ class _$MessageThreadCopyWithImpl<$Res, $Val extends MessageThread>
 abstract class _$$MessageThreadImplCopyWith<$Res>
     implements $MessageThreadCopyWith<$Res> {
   factory _$$MessageThreadImplCopyWith(
-    _$MessageThreadImpl value,
-    $Res Function(_$MessageThreadImpl) then,
-  ) = __$$MessageThreadImplCopyWithImpl<$Res>;
+          _$MessageThreadImpl value, $Res Function(_$MessageThreadImpl) then) =
+      __$$MessageThreadImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String participantName,
-    String lastMessage,
-    DateTime lastTimestamp,
-    List<Message> messages,
-    int unreadCount,
-  });
+  $Res call(
+      {String id,
+      String participantName,
+      String lastMessage,
+      DateTime lastTimestamp,
+      List<Message> messages,
+      int unreadCount});
 }
 
 /// @nodoc
@@ -424,9 +399,8 @@ class __$$MessageThreadImplCopyWithImpl<$Res>
     extends _$MessageThreadCopyWithImpl<$Res, _$MessageThreadImpl>
     implements _$$MessageThreadImplCopyWith<$Res> {
   __$$MessageThreadImplCopyWithImpl(
-    _$MessageThreadImpl _value,
-    $Res Function(_$MessageThreadImpl) _then,
-  ) : super(_value, _then);
+      _$MessageThreadImpl _value, $Res Function(_$MessageThreadImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of MessageThread
   /// with the given fields replaced by the non-null parameter values.
@@ -440,48 +414,46 @@ class __$$MessageThreadImplCopyWithImpl<$Res>
     Object? messages = null,
     Object? unreadCount = null,
   }) {
-    return _then(
-      _$MessageThreadImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        participantName: null == participantName
-            ? _value.participantName
-            : participantName // ignore: cast_nullable_to_non_nullable
-                  as String,
-        lastMessage: null == lastMessage
-            ? _value.lastMessage
-            : lastMessage // ignore: cast_nullable_to_non_nullable
-                  as String,
-        lastTimestamp: null == lastTimestamp
-            ? _value.lastTimestamp
-            : lastTimestamp // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        messages: null == messages
-            ? _value._messages
-            : messages // ignore: cast_nullable_to_non_nullable
-                  as List<Message>,
-        unreadCount: null == unreadCount
-            ? _value.unreadCount
-            : unreadCount // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+    return _then(_$MessageThreadImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      participantName: null == participantName
+          ? _value.participantName
+          : participantName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastMessage: null == lastMessage
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastTimestamp: null == lastTimestamp
+          ? _value.lastTimestamp
+          : lastTimestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      messages: null == messages
+          ? _value._messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<Message>,
+      unreadCount: null == unreadCount
+          ? _value.unreadCount
+          : unreadCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$MessageThreadImpl implements _MessageThread {
-  const _$MessageThreadImpl({
-    required this.id,
-    required this.participantName,
-    required this.lastMessage,
-    required this.lastTimestamp,
-    required final List<Message> messages,
-    this.unreadCount = 0,
-  }) : _messages = messages;
+  const _$MessageThreadImpl(
+      {required this.id,
+      required this.participantName,
+      required this.lastMessage,
+      required this.lastTimestamp,
+      required final List<Message> messages,
+      this.unreadCount = 0})
+      : _messages = messages;
 
   factory _$MessageThreadImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageThreadImplFromJson(json);
@@ -531,14 +503,13 @@ class _$MessageThreadImpl implements _MessageThread {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    participantName,
-    lastMessage,
-    lastTimestamp,
-    const DeepCollectionEquality().hash(_messages),
-    unreadCount,
-  );
+      runtimeType,
+      id,
+      participantName,
+      lastMessage,
+      lastTimestamp,
+      const DeepCollectionEquality().hash(_messages),
+      unreadCount);
 
   /// Create a copy of MessageThread
   /// with the given fields replaced by the non-null parameter values.
@@ -550,19 +521,20 @@ class _$MessageThreadImpl implements _MessageThread {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MessageThreadImplToJson(this);
+    return _$$MessageThreadImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _MessageThread implements MessageThread {
-  const factory _MessageThread({
-    required final String id,
-    required final String participantName,
-    required final String lastMessage,
-    required final DateTime lastTimestamp,
-    required final List<Message> messages,
-    final int unreadCount,
-  }) = _$MessageThreadImpl;
+  const factory _MessageThread(
+      {required final String id,
+      required final String participantName,
+      required final String lastMessage,
+      required final DateTime lastTimestamp,
+      required final List<Message> messages,
+      final int unreadCount}) = _$MessageThreadImpl;
 
   factory _MessageThread.fromJson(Map<String, dynamic> json) =
       _$MessageThreadImpl.fromJson;

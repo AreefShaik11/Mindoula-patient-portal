@@ -12,8 +12,7 @@ part of 'prescription.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Prescription _$PrescriptionFromJson(Map<String, dynamic> json) {
   return _Prescription.fromJson(json);
@@ -42,19 +41,17 @@ mixin _$Prescription {
 /// @nodoc
 abstract class $PrescriptionCopyWith<$Res> {
   factory $PrescriptionCopyWith(
-    Prescription value,
-    $Res Function(Prescription) then,
-  ) = _$PrescriptionCopyWithImpl<$Res, Prescription>;
+          Prescription value, $Res Function(Prescription) then) =
+      _$PrescriptionCopyWithImpl<$Res, Prescription>;
   @useResult
-  $Res call({
-    String id,
-    String drugName,
-    String dosage,
-    String frequency,
-    PrescriptionStatus status,
-    DateTime lastRefill,
-    int refillsRemaining,
-  });
+  $Res call(
+      {String id,
+      String drugName,
+      String dosage,
+      String frequency,
+      PrescriptionStatus status,
+      DateTime lastRefill,
+      int refillsRemaining});
 }
 
 /// @nodoc
@@ -80,39 +77,36 @@ class _$PrescriptionCopyWithImpl<$Res, $Val extends Prescription>
     Object? lastRefill = null,
     Object? refillsRemaining = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            drugName: null == drugName
-                ? _value.drugName
-                : drugName // ignore: cast_nullable_to_non_nullable
-                      as String,
-            dosage: null == dosage
-                ? _value.dosage
-                : dosage // ignore: cast_nullable_to_non_nullable
-                      as String,
-            frequency: null == frequency
-                ? _value.frequency
-                : frequency // ignore: cast_nullable_to_non_nullable
-                      as String,
-            status: null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                      as PrescriptionStatus,
-            lastRefill: null == lastRefill
-                ? _value.lastRefill
-                : lastRefill // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            refillsRemaining: null == refillsRemaining
-                ? _value.refillsRemaining
-                : refillsRemaining // ignore: cast_nullable_to_non_nullable
-                      as int,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      drugName: null == drugName
+          ? _value.drugName
+          : drugName // ignore: cast_nullable_to_non_nullable
+              as String,
+      dosage: null == dosage
+          ? _value.dosage
+          : dosage // ignore: cast_nullable_to_non_nullable
+              as String,
+      frequency: null == frequency
+          ? _value.frequency
+          : frequency // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as PrescriptionStatus,
+      lastRefill: null == lastRefill
+          ? _value.lastRefill
+          : lastRefill // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      refillsRemaining: null == refillsRemaining
+          ? _value.refillsRemaining
+          : refillsRemaining // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
   }
 }
 
@@ -120,20 +114,18 @@ class _$PrescriptionCopyWithImpl<$Res, $Val extends Prescription>
 abstract class _$$PrescriptionImplCopyWith<$Res>
     implements $PrescriptionCopyWith<$Res> {
   factory _$$PrescriptionImplCopyWith(
-    _$PrescriptionImpl value,
-    $Res Function(_$PrescriptionImpl) then,
-  ) = __$$PrescriptionImplCopyWithImpl<$Res>;
+          _$PrescriptionImpl value, $Res Function(_$PrescriptionImpl) then) =
+      __$$PrescriptionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String drugName,
-    String dosage,
-    String frequency,
-    PrescriptionStatus status,
-    DateTime lastRefill,
-    int refillsRemaining,
-  });
+  $Res call(
+      {String id,
+      String drugName,
+      String dosage,
+      String frequency,
+      PrescriptionStatus status,
+      DateTime lastRefill,
+      int refillsRemaining});
 }
 
 /// @nodoc
@@ -141,9 +133,8 @@ class __$$PrescriptionImplCopyWithImpl<$Res>
     extends _$PrescriptionCopyWithImpl<$Res, _$PrescriptionImpl>
     implements _$$PrescriptionImplCopyWith<$Res> {
   __$$PrescriptionImplCopyWithImpl(
-    _$PrescriptionImpl _value,
-    $Res Function(_$PrescriptionImpl) _then,
-  ) : super(_value, _then);
+      _$PrescriptionImpl _value, $Res Function(_$PrescriptionImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of Prescription
   /// with the given fields replaced by the non-null parameter values.
@@ -158,53 +149,50 @@ class __$$PrescriptionImplCopyWithImpl<$Res>
     Object? lastRefill = null,
     Object? refillsRemaining = null,
   }) {
-    return _then(
-      _$PrescriptionImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        drugName: null == drugName
-            ? _value.drugName
-            : drugName // ignore: cast_nullable_to_non_nullable
-                  as String,
-        dosage: null == dosage
-            ? _value.dosage
-            : dosage // ignore: cast_nullable_to_non_nullable
-                  as String,
-        frequency: null == frequency
-            ? _value.frequency
-            : frequency // ignore: cast_nullable_to_non_nullable
-                  as String,
-        status: null == status
-            ? _value.status
-            : status // ignore: cast_nullable_to_non_nullable
-                  as PrescriptionStatus,
-        lastRefill: null == lastRefill
-            ? _value.lastRefill
-            : lastRefill // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        refillsRemaining: null == refillsRemaining
-            ? _value.refillsRemaining
-            : refillsRemaining // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+    return _then(_$PrescriptionImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      drugName: null == drugName
+          ? _value.drugName
+          : drugName // ignore: cast_nullable_to_non_nullable
+              as String,
+      dosage: null == dosage
+          ? _value.dosage
+          : dosage // ignore: cast_nullable_to_non_nullable
+              as String,
+      frequency: null == frequency
+          ? _value.frequency
+          : frequency // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as PrescriptionStatus,
+      lastRefill: null == lastRefill
+          ? _value.lastRefill
+          : lastRefill // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      refillsRemaining: null == refillsRemaining
+          ? _value.refillsRemaining
+          : refillsRemaining // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$PrescriptionImpl implements _Prescription {
-  const _$PrescriptionImpl({
-    required this.id,
-    required this.drugName,
-    required this.dosage,
-    required this.frequency,
-    required this.status,
-    required this.lastRefill,
-    required this.refillsRemaining,
-  });
+  const _$PrescriptionImpl(
+      {required this.id,
+      required this.drugName,
+      required this.dosage,
+      required this.frequency,
+      required this.status,
+      required this.lastRefill,
+      required this.refillsRemaining});
 
   factory _$PrescriptionImpl.fromJson(Map<String, dynamic> json) =>
       _$$PrescriptionImplFromJson(json);
@@ -249,16 +237,8 @@ class _$PrescriptionImpl implements _Prescription {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    drugName,
-    dosage,
-    frequency,
-    status,
-    lastRefill,
-    refillsRemaining,
-  );
+  int get hashCode => Object.hash(runtimeType, id, drugName, dosage, frequency,
+      status, lastRefill, refillsRemaining);
 
   /// Create a copy of Prescription
   /// with the given fields replaced by the non-null parameter values.
@@ -270,20 +250,21 @@ class _$PrescriptionImpl implements _Prescription {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PrescriptionImplToJson(this);
+    return _$$PrescriptionImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _Prescription implements Prescription {
-  const factory _Prescription({
-    required final String id,
-    required final String drugName,
-    required final String dosage,
-    required final String frequency,
-    required final PrescriptionStatus status,
-    required final DateTime lastRefill,
-    required final int refillsRemaining,
-  }) = _$PrescriptionImpl;
+  const factory _Prescription(
+      {required final String id,
+      required final String drugName,
+      required final String dosage,
+      required final String frequency,
+      required final PrescriptionStatus status,
+      required final DateTime lastRefill,
+      required final int refillsRemaining}) = _$PrescriptionImpl;
 
   factory _Prescription.fromJson(Map<String, dynamic> json) =
       _$PrescriptionImpl.fromJson;

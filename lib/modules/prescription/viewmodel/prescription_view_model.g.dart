@@ -11,19 +11,16 @@ String _$prescriptionViewModelHash() =>
 
 /// See also [PrescriptionViewModel].
 @ProviderFor(PrescriptionViewModel)
-final prescriptionViewModelProvider =
-    AutoDisposeNotifierProvider<
-      PrescriptionViewModel,
-      List<Prescription>
-    >.internal(
-      PrescriptionViewModel.new,
-      name: r'prescriptionViewModelProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$prescriptionViewModelHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+final prescriptionViewModelProvider = AutoDisposeNotifierProvider<
+    PrescriptionViewModel, List<Prescription>>.internal(
+  PrescriptionViewModel.new,
+  name: r'prescriptionViewModelProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$prescriptionViewModelHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$PrescriptionViewModel = AutoDisposeNotifier<List<Prescription>>;
 // ignore_for_file: type=lint

@@ -12,8 +12,7 @@ part of 'dashboard_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 DashboardState _$DashboardStateFromJson(Map<String, dynamic> json) {
   return _DashboardState.fromJson(json);
@@ -42,19 +41,17 @@ mixin _$DashboardState {
 /// @nodoc
 abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
-    DashboardState value,
-    $Res Function(DashboardState) then,
-  ) = _$DashboardStateCopyWithImpl<$Res, DashboardState>;
+          DashboardState value, $Res Function(DashboardState) then) =
+      _$DashboardStateCopyWithImpl<$Res, DashboardState>;
   @useResult
-  $Res call({
-    String userName,
-    String? nextAppointmentType,
-    String? nextAppointmentDate,
-    String? nextAppointmentMonth,
-    String? nextAppointmentTime,
-    String? nextAppointmentDoctor,
-    bool isLoading,
-  });
+  $Res call(
+      {String userName,
+      String? nextAppointmentType,
+      String? nextAppointmentDate,
+      String? nextAppointmentMonth,
+      String? nextAppointmentTime,
+      String? nextAppointmentDoctor,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -80,60 +77,55 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
     Object? nextAppointmentDoctor = freezed,
     Object? isLoading = null,
   }) {
-    return _then(
-      _value.copyWith(
-            userName: null == userName
-                ? _value.userName
-                : userName // ignore: cast_nullable_to_non_nullable
-                      as String,
-            nextAppointmentType: freezed == nextAppointmentType
-                ? _value.nextAppointmentType
-                : nextAppointmentType // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            nextAppointmentDate: freezed == nextAppointmentDate
-                ? _value.nextAppointmentDate
-                : nextAppointmentDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            nextAppointmentMonth: freezed == nextAppointmentMonth
-                ? _value.nextAppointmentMonth
-                : nextAppointmentMonth // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            nextAppointmentTime: freezed == nextAppointmentTime
-                ? _value.nextAppointmentTime
-                : nextAppointmentTime // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            nextAppointmentDoctor: freezed == nextAppointmentDoctor
-                ? _value.nextAppointmentDoctor
-                : nextAppointmentDoctor // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      nextAppointmentType: freezed == nextAppointmentType
+          ? _value.nextAppointmentType
+          : nextAppointmentType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAppointmentDate: freezed == nextAppointmentDate
+          ? _value.nextAppointmentDate
+          : nextAppointmentDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAppointmentMonth: freezed == nextAppointmentMonth
+          ? _value.nextAppointmentMonth
+          : nextAppointmentMonth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAppointmentTime: freezed == nextAppointmentTime
+          ? _value.nextAppointmentTime
+          : nextAppointmentTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAppointmentDoctor: freezed == nextAppointmentDoctor
+          ? _value.nextAppointmentDoctor
+          : nextAppointmentDoctor // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$DashboardStateImplCopyWith<$Res>
     implements $DashboardStateCopyWith<$Res> {
-  factory _$$DashboardStateImplCopyWith(
-    _$DashboardStateImpl value,
-    $Res Function(_$DashboardStateImpl) then,
-  ) = __$$DashboardStateImplCopyWithImpl<$Res>;
+  factory _$$DashboardStateImplCopyWith(_$DashboardStateImpl value,
+          $Res Function(_$DashboardStateImpl) then) =
+      __$$DashboardStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String userName,
-    String? nextAppointmentType,
-    String? nextAppointmentDate,
-    String? nextAppointmentMonth,
-    String? nextAppointmentTime,
-    String? nextAppointmentDoctor,
-    bool isLoading,
-  });
+  $Res call(
+      {String userName,
+      String? nextAppointmentType,
+      String? nextAppointmentDate,
+      String? nextAppointmentMonth,
+      String? nextAppointmentTime,
+      String? nextAppointmentDoctor,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -141,9 +133,8 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
     extends _$DashboardStateCopyWithImpl<$Res, _$DashboardStateImpl>
     implements _$$DashboardStateImplCopyWith<$Res> {
   __$$DashboardStateImplCopyWithImpl(
-    _$DashboardStateImpl _value,
-    $Res Function(_$DashboardStateImpl) _then,
-  ) : super(_value, _then);
+      _$DashboardStateImpl _value, $Res Function(_$DashboardStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
@@ -158,53 +149,50 @@ class __$$DashboardStateImplCopyWithImpl<$Res>
     Object? nextAppointmentDoctor = freezed,
     Object? isLoading = null,
   }) {
-    return _then(
-      _$DashboardStateImpl(
-        userName: null == userName
-            ? _value.userName
-            : userName // ignore: cast_nullable_to_non_nullable
-                  as String,
-        nextAppointmentType: freezed == nextAppointmentType
-            ? _value.nextAppointmentType
-            : nextAppointmentType // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        nextAppointmentDate: freezed == nextAppointmentDate
-            ? _value.nextAppointmentDate
-            : nextAppointmentDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        nextAppointmentMonth: freezed == nextAppointmentMonth
-            ? _value.nextAppointmentMonth
-            : nextAppointmentMonth // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        nextAppointmentTime: freezed == nextAppointmentTime
-            ? _value.nextAppointmentTime
-            : nextAppointmentTime // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        nextAppointmentDoctor: freezed == nextAppointmentDoctor
-            ? _value.nextAppointmentDoctor
-            : nextAppointmentDoctor // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        isLoading: null == isLoading
-            ? _value.isLoading
-            : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
-      ),
-    );
+    return _then(_$DashboardStateImpl(
+      userName: null == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String,
+      nextAppointmentType: freezed == nextAppointmentType
+          ? _value.nextAppointmentType
+          : nextAppointmentType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAppointmentDate: freezed == nextAppointmentDate
+          ? _value.nextAppointmentDate
+          : nextAppointmentDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAppointmentMonth: freezed == nextAppointmentMonth
+          ? _value.nextAppointmentMonth
+          : nextAppointmentMonth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAppointmentTime: freezed == nextAppointmentTime
+          ? _value.nextAppointmentTime
+          : nextAppointmentTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextAppointmentDoctor: freezed == nextAppointmentDoctor
+          ? _value.nextAppointmentDoctor
+          : nextAppointmentDoctor // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$DashboardStateImpl implements _DashboardState {
-  const _$DashboardStateImpl({
-    this.userName = 'Jane',
-    this.nextAppointmentType,
-    this.nextAppointmentDate,
-    this.nextAppointmentMonth,
-    this.nextAppointmentTime,
-    this.nextAppointmentDoctor,
-    this.isLoading = false,
-  });
+  const _$DashboardStateImpl(
+      {this.userName = 'Jane',
+      this.nextAppointmentType,
+      this.nextAppointmentDate,
+      this.nextAppointmentMonth,
+      this.nextAppointmentTime,
+      this.nextAppointmentDoctor,
+      this.isLoading = false});
 
   factory _$DashboardStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$DashboardStateImplFromJson(json);
@@ -255,15 +243,14 @@ class _$DashboardStateImpl implements _DashboardState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    userName,
-    nextAppointmentType,
-    nextAppointmentDate,
-    nextAppointmentMonth,
-    nextAppointmentTime,
-    nextAppointmentDoctor,
-    isLoading,
-  );
+      runtimeType,
+      userName,
+      nextAppointmentType,
+      nextAppointmentDate,
+      nextAppointmentMonth,
+      nextAppointmentTime,
+      nextAppointmentDoctor,
+      isLoading);
 
   /// Create a copy of DashboardState
   /// with the given fields replaced by the non-null parameter values.
@@ -272,26 +259,25 @@ class _$DashboardStateImpl implements _DashboardState {
   @pragma('vm:prefer-inline')
   _$$DashboardStateImplCopyWith<_$DashboardStateImpl> get copyWith =>
       __$$DashboardStateImplCopyWithImpl<_$DashboardStateImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DashboardStateImplToJson(this);
+    return _$$DashboardStateImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _DashboardState implements DashboardState {
-  const factory _DashboardState({
-    final String userName,
-    final String? nextAppointmentType,
-    final String? nextAppointmentDate,
-    final String? nextAppointmentMonth,
-    final String? nextAppointmentTime,
-    final String? nextAppointmentDoctor,
-    final bool isLoading,
-  }) = _$DashboardStateImpl;
+  const factory _DashboardState(
+      {final String userName,
+      final String? nextAppointmentType,
+      final String? nextAppointmentDate,
+      final String? nextAppointmentMonth,
+      final String? nextAppointmentTime,
+      final String? nextAppointmentDoctor,
+      final bool isLoading}) = _$DashboardStateImpl;
 
   factory _DashboardState.fromJson(Map<String, dynamic> json) =
       _$DashboardStateImpl.fromJson;

@@ -12,8 +12,7 @@ part of 'account_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AccountState _$AccountStateFromJson(Map<String, dynamic> json) {
   return _AccountState.fromJson(json);
@@ -42,19 +41,17 @@ mixin _$AccountState {
 /// @nodoc
 abstract class $AccountStateCopyWith<$Res> {
   factory $AccountStateCopyWith(
-    AccountState value,
-    $Res Function(AccountState) then,
-  ) = _$AccountStateCopyWithImpl<$Res, AccountState>;
+          AccountState value, $Res Function(AccountState) then) =
+      _$AccountStateCopyWithImpl<$Res, AccountState>;
   @useResult
-  $Res call({
-    String fullName,
-    String email,
-    String language,
-    bool emailNotifications,
-    bool smsNotifications,
-    bool isLoading,
-    String? errorMessage,
-  });
+  $Res call(
+      {String fullName,
+      String email,
+      String language,
+      bool emailNotifications,
+      bool smsNotifications,
+      bool isLoading,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -80,39 +77,36 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
     Object? isLoading = null,
     Object? errorMessage = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            fullName: null == fullName
-                ? _value.fullName
-                : fullName // ignore: cast_nullable_to_non_nullable
-                      as String,
-            email: null == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                      as String,
-            language: null == language
-                ? _value.language
-                : language // ignore: cast_nullable_to_non_nullable
-                      as String,
-            emailNotifications: null == emailNotifications
-                ? _value.emailNotifications
-                : emailNotifications // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            smsNotifications: null == smsNotifications
-                ? _value.smsNotifications
-                : smsNotifications // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            errorMessage: freezed == errorMessage
-                ? _value.errorMessage
-                : errorMessage // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
+      emailNotifications: null == emailNotifications
+          ? _value.emailNotifications
+          : emailNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
+      smsNotifications: null == smsNotifications
+          ? _value.smsNotifications
+          : smsNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -120,20 +114,18 @@ class _$AccountStateCopyWithImpl<$Res, $Val extends AccountState>
 abstract class _$$AccountStateImplCopyWith<$Res>
     implements $AccountStateCopyWith<$Res> {
   factory _$$AccountStateImplCopyWith(
-    _$AccountStateImpl value,
-    $Res Function(_$AccountStateImpl) then,
-  ) = __$$AccountStateImplCopyWithImpl<$Res>;
+          _$AccountStateImpl value, $Res Function(_$AccountStateImpl) then) =
+      __$$AccountStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String fullName,
-    String email,
-    String language,
-    bool emailNotifications,
-    bool smsNotifications,
-    bool isLoading,
-    String? errorMessage,
-  });
+  $Res call(
+      {String fullName,
+      String email,
+      String language,
+      bool emailNotifications,
+      bool smsNotifications,
+      bool isLoading,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -141,9 +133,8 @@ class __$$AccountStateImplCopyWithImpl<$Res>
     extends _$AccountStateCopyWithImpl<$Res, _$AccountStateImpl>
     implements _$$AccountStateImplCopyWith<$Res> {
   __$$AccountStateImplCopyWithImpl(
-    _$AccountStateImpl _value,
-    $Res Function(_$AccountStateImpl) _then,
-  ) : super(_value, _then);
+      _$AccountStateImpl _value, $Res Function(_$AccountStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of AccountState
   /// with the given fields replaced by the non-null parameter values.
@@ -158,53 +149,50 @@ class __$$AccountStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? errorMessage = freezed,
   }) {
-    return _then(
-      _$AccountStateImpl(
-        fullName: null == fullName
-            ? _value.fullName
-            : fullName // ignore: cast_nullable_to_non_nullable
-                  as String,
-        email: null == email
-            ? _value.email
-            : email // ignore: cast_nullable_to_non_nullable
-                  as String,
-        language: null == language
-            ? _value.language
-            : language // ignore: cast_nullable_to_non_nullable
-                  as String,
-        emailNotifications: null == emailNotifications
-            ? _value.emailNotifications
-            : emailNotifications // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        smsNotifications: null == smsNotifications
-            ? _value.smsNotifications
-            : smsNotifications // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        isLoading: null == isLoading
-            ? _value.isLoading
-            : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        errorMessage: freezed == errorMessage
-            ? _value.errorMessage
-            : errorMessage // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$AccountStateImpl(
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
+      emailNotifications: null == emailNotifications
+          ? _value.emailNotifications
+          : emailNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
+      smsNotifications: null == smsNotifications
+          ? _value.smsNotifications
+          : smsNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$AccountStateImpl implements _AccountState {
-  const _$AccountStateImpl({
-    this.fullName = 'Jane Doe',
-    this.email = 'jane.doe@mail.com',
-    this.language = 'English',
-    this.emailNotifications = true,
-    this.smsNotifications = false,
-    this.isLoading = false,
-    this.errorMessage,
-  });
+  const _$AccountStateImpl(
+      {this.fullName = 'Jane Doe',
+      this.email = 'jane.doe@mail.com',
+      this.language = 'English',
+      this.emailNotifications = true,
+      this.smsNotifications = false,
+      this.isLoading = false,
+      this.errorMessage});
 
   factory _$AccountStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$AccountStateImplFromJson(json);
@@ -257,16 +245,8 @@ class _$AccountStateImpl implements _AccountState {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    fullName,
-    email,
-    language,
-    emailNotifications,
-    smsNotifications,
-    isLoading,
-    errorMessage,
-  );
+  int get hashCode => Object.hash(runtimeType, fullName, email, language,
+      emailNotifications, smsNotifications, isLoading, errorMessage);
 
   /// Create a copy of AccountState
   /// with the given fields replaced by the non-null parameter values.
@@ -278,20 +258,21 @@ class _$AccountStateImpl implements _AccountState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AccountStateImplToJson(this);
+    return _$$AccountStateImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _AccountState implements AccountState {
-  const factory _AccountState({
-    final String fullName,
-    final String email,
-    final String language,
-    final bool emailNotifications,
-    final bool smsNotifications,
-    final bool isLoading,
-    final String? errorMessage,
-  }) = _$AccountStateImpl;
+  const factory _AccountState(
+      {final String fullName,
+      final String email,
+      final String language,
+      final bool emailNotifications,
+      final bool smsNotifications,
+      final bool isLoading,
+      final String? errorMessage}) = _$AccountStateImpl;
 
   factory _AccountState.fromJson(Map<String, dynamic> json) =
       _$AccountStateImpl.fromJson;

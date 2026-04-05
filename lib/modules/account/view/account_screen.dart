@@ -41,9 +41,7 @@ class AccountScreen extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 32),
-              SizedBox(
-                width: 653,
-                height: 500,
+              Expanded(
                 child: TabBarView(
                   children: [
                     // Settings Tab

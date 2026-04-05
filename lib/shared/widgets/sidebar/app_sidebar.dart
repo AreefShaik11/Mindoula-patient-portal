@@ -8,7 +8,12 @@ class AppSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final location = GoRouterState.of(context).uri.path;
+    String location;
+    try {
+      location = GoRouterState.of(context).uri.path;
+    } catch (_) {
+      location = '/';
+    }
 
     return Container(
       width: 309,

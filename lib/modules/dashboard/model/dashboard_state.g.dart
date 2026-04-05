@@ -18,13 +18,13 @@ _$DashboardStateImpl _$$DashboardStateImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$DashboardStateImplToJson(
-  _$DashboardStateImpl instance,
-) => <String, dynamic>{
-  'userName': instance.userName,
-  'nextAppointmentType': instance.nextAppointmentType,
-  'nextAppointmentDate': instance.nextAppointmentDate,
-  'nextAppointmentMonth': instance.nextAppointmentMonth,
-  'nextAppointmentTime': instance.nextAppointmentTime,
-  'nextAppointmentDoctor': instance.nextAppointmentDoctor,
-  'isLoading': instance.isLoading,
-};
+        _$DashboardStateImpl instance) =>
+    <String, dynamic>{
+      'userName': instance.userName,
+      'nextAppointmentType': instance.nextAppointmentType,
+      'nextAppointmentDate': instance.nextAppointmentDate,
+      'nextAppointmentMonth': instance.nextAppointmentMonth,
+      'nextAppointmentTime': instance.nextAppointmentTime,
+      'nextAppointmentDoctor': instance.nextAppointmentDoctor,
+      'isLoading': instance.isLoading,
+    };

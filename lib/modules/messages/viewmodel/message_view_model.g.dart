@@ -10,19 +10,16 @@ String _$messageViewModelHash() => r'c11242eac2b471e64afc940d57a5446536dc026f';
 
 /// See also [MessageViewModel].
 @ProviderFor(MessageViewModel)
-final messageViewModelProvider =
-    AutoDisposeNotifierProvider<
-      MessageViewModel,
-      Map<String, dynamic>
-    >.internal(
-      MessageViewModel.new,
-      name: r'messageViewModelProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$messageViewModelHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+final messageViewModelProvider = AutoDisposeNotifierProvider<MessageViewModel,
+    Map<String, dynamic>>.internal(
+  MessageViewModel.new,
+  name: r'messageViewModelProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$messageViewModelHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$MessageViewModel = AutoDisposeNotifier<Map<String, dynamic>>;
 // ignore_for_file: type=lint

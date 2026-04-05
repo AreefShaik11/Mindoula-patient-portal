@@ -12,8 +12,7 @@ part of 'billing_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Transaction _$TransactionFromJson(Map<String, dynamic> json) {
   return _Transaction.fromJson(json);
@@ -40,17 +39,15 @@ mixin _$Transaction {
 /// @nodoc
 abstract class $TransactionCopyWith<$Res> {
   factory $TransactionCopyWith(
-    Transaction value,
-    $Res Function(Transaction) then,
-  ) = _$TransactionCopyWithImpl<$Res, Transaction>;
+          Transaction value, $Res Function(Transaction) then) =
+      _$TransactionCopyWithImpl<$Res, Transaction>;
   @useResult
-  $Res call({
-    String id,
-    DateTime date,
-    String description,
-    double amount,
-    BillingStatus status,
-  });
+  $Res call(
+      {String id,
+      DateTime date,
+      String description,
+      double amount,
+      BillingStatus status});
 }
 
 /// @nodoc
@@ -74,31 +71,28 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
     Object? amount = null,
     Object? status = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            date: null == date
-                ? _value.date
-                : date // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            description: null == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                      as String,
-            amount: null == amount
-                ? _value.amount
-                : amount // ignore: cast_nullable_to_non_nullable
-                      as double,
-            status: null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                      as BillingStatus,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as BillingStatus,
+    ) as $Val);
   }
 }
 
@@ -106,18 +100,16 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
 abstract class _$$TransactionImplCopyWith<$Res>
     implements $TransactionCopyWith<$Res> {
   factory _$$TransactionImplCopyWith(
-    _$TransactionImpl value,
-    $Res Function(_$TransactionImpl) then,
-  ) = __$$TransactionImplCopyWithImpl<$Res>;
+          _$TransactionImpl value, $Res Function(_$TransactionImpl) then) =
+      __$$TransactionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    DateTime date,
-    String description,
-    double amount,
-    BillingStatus status,
-  });
+  $Res call(
+      {String id,
+      DateTime date,
+      String description,
+      double amount,
+      BillingStatus status});
 }
 
 /// @nodoc
@@ -125,9 +117,8 @@ class __$$TransactionImplCopyWithImpl<$Res>
     extends _$TransactionCopyWithImpl<$Res, _$TransactionImpl>
     implements _$$TransactionImplCopyWith<$Res> {
   __$$TransactionImplCopyWithImpl(
-    _$TransactionImpl _value,
-    $Res Function(_$TransactionImpl) _then,
-  ) : super(_value, _then);
+      _$TransactionImpl _value, $Res Function(_$TransactionImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.
@@ -140,43 +131,40 @@ class __$$TransactionImplCopyWithImpl<$Res>
     Object? amount = null,
     Object? status = null,
   }) {
-    return _then(
-      _$TransactionImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        date: null == date
-            ? _value.date
-            : date // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        description: null == description
-            ? _value.description
-            : description // ignore: cast_nullable_to_non_nullable
-                  as String,
-        amount: null == amount
-            ? _value.amount
-            : amount // ignore: cast_nullable_to_non_nullable
-                  as double,
-        status: null == status
-            ? _value.status
-            : status // ignore: cast_nullable_to_non_nullable
-                  as BillingStatus,
-      ),
-    );
+    return _then(_$TransactionImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as BillingStatus,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$TransactionImpl implements _Transaction {
-  const _$TransactionImpl({
-    required this.id,
-    required this.date,
-    required this.description,
-    required this.amount,
-    required this.status,
-  });
+  const _$TransactionImpl(
+      {required this.id,
+      required this.date,
+      required this.description,
+      required this.amount,
+      required this.status});
 
   factory _$TransactionImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransactionImplFromJson(json);
@@ -225,18 +213,19 @@ class _$TransactionImpl implements _Transaction {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TransactionImplToJson(this);
+    return _$$TransactionImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _Transaction implements Transaction {
-  const factory _Transaction({
-    required final String id,
-    required final DateTime date,
-    required final String description,
-    required final double amount,
-    required final BillingStatus status,
-  }) = _$TransactionImpl;
+  const factory _Transaction(
+      {required final String id,
+      required final DateTime date,
+      required final String description,
+      required final double amount,
+      required final BillingStatus status}) = _$TransactionImpl;
 
   factory _Transaction.fromJson(Map<String, dynamic> json) =
       _$TransactionImpl.fromJson;
@@ -284,9 +273,8 @@ mixin _$PaymentMethod {
 /// @nodoc
 abstract class $PaymentMethodCopyWith<$Res> {
   factory $PaymentMethodCopyWith(
-    PaymentMethod value,
-    $Res Function(PaymentMethod) then,
-  ) = _$PaymentMethodCopyWithImpl<$Res, PaymentMethod>;
+          PaymentMethod value, $Res Function(PaymentMethod) then) =
+      _$PaymentMethodCopyWithImpl<$Res, PaymentMethod>;
   @useResult
   $Res call({String id, String type, String lastFour, bool isDefault});
 }
@@ -311,27 +299,24 @@ class _$PaymentMethodCopyWithImpl<$Res, $Val extends PaymentMethod>
     Object? lastFour = null,
     Object? isDefault = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            type: null == type
-                ? _value.type
-                : type // ignore: cast_nullable_to_non_nullable
-                      as String,
-            lastFour: null == lastFour
-                ? _value.lastFour
-                : lastFour // ignore: cast_nullable_to_non_nullable
-                      as String,
-            isDefault: null == isDefault
-                ? _value.isDefault
-                : isDefault // ignore: cast_nullable_to_non_nullable
-                      as bool,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastFour: null == lastFour
+          ? _value.lastFour
+          : lastFour // ignore: cast_nullable_to_non_nullable
+              as String,
+      isDefault: null == isDefault
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
   }
 }
 
@@ -339,9 +324,8 @@ class _$PaymentMethodCopyWithImpl<$Res, $Val extends PaymentMethod>
 abstract class _$$PaymentMethodImplCopyWith<$Res>
     implements $PaymentMethodCopyWith<$Res> {
   factory _$$PaymentMethodImplCopyWith(
-    _$PaymentMethodImpl value,
-    $Res Function(_$PaymentMethodImpl) then,
-  ) = __$$PaymentMethodImplCopyWithImpl<$Res>;
+          _$PaymentMethodImpl value, $Res Function(_$PaymentMethodImpl) then) =
+      __$$PaymentMethodImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String type, String lastFour, bool isDefault});
@@ -352,9 +336,8 @@ class __$$PaymentMethodImplCopyWithImpl<$Res>
     extends _$PaymentMethodCopyWithImpl<$Res, _$PaymentMethodImpl>
     implements _$$PaymentMethodImplCopyWith<$Res> {
   __$$PaymentMethodImplCopyWithImpl(
-    _$PaymentMethodImpl _value,
-    $Res Function(_$PaymentMethodImpl) _then,
-  ) : super(_value, _then);
+      _$PaymentMethodImpl _value, $Res Function(_$PaymentMethodImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of PaymentMethod
   /// with the given fields replaced by the non-null parameter values.
@@ -366,38 +349,35 @@ class __$$PaymentMethodImplCopyWithImpl<$Res>
     Object? lastFour = null,
     Object? isDefault = null,
   }) {
-    return _then(
-      _$PaymentMethodImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        type: null == type
-            ? _value.type
-            : type // ignore: cast_nullable_to_non_nullable
-                  as String,
-        lastFour: null == lastFour
-            ? _value.lastFour
-            : lastFour // ignore: cast_nullable_to_non_nullable
-                  as String,
-        isDefault: null == isDefault
-            ? _value.isDefault
-            : isDefault // ignore: cast_nullable_to_non_nullable
-                  as bool,
-      ),
-    );
+    return _then(_$PaymentMethodImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastFour: null == lastFour
+          ? _value.lastFour
+          : lastFour // ignore: cast_nullable_to_non_nullable
+              as String,
+      isDefault: null == isDefault
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$PaymentMethodImpl implements _PaymentMethod {
-  const _$PaymentMethodImpl({
-    required this.id,
-    required this.type,
-    required this.lastFour,
-    required this.isDefault,
-  });
+  const _$PaymentMethodImpl(
+      {required this.id,
+      required this.type,
+      required this.lastFour,
+      required this.isDefault});
 
   factory _$PaymentMethodImpl.fromJson(Map<String, dynamic> json) =>
       _$$PaymentMethodImplFromJson(json);
@@ -443,17 +423,18 @@ class _$PaymentMethodImpl implements _PaymentMethod {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PaymentMethodImplToJson(this);
+    return _$$PaymentMethodImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _PaymentMethod implements PaymentMethod {
-  const factory _PaymentMethod({
-    required final String id,
-    required final String type,
-    required final String lastFour,
-    required final bool isDefault,
-  }) = _$PaymentMethodImpl;
+  const factory _PaymentMethod(
+      {required final String id,
+      required final String type,
+      required final String lastFour,
+      required final bool isDefault}) = _$PaymentMethodImpl;
 
   factory _PaymentMethod.fromJson(Map<String, dynamic> json) =
       _$PaymentMethodImpl.fromJson;
@@ -499,16 +480,14 @@ mixin _$BillingState {
 /// @nodoc
 abstract class $BillingStateCopyWith<$Res> {
   factory $BillingStateCopyWith(
-    BillingState value,
-    $Res Function(BillingState) then,
-  ) = _$BillingStateCopyWithImpl<$Res, BillingState>;
+          BillingState value, $Res Function(BillingState) then) =
+      _$BillingStateCopyWithImpl<$Res, BillingState>;
   @useResult
-  $Res call({
-    double outstandingBalance,
-    List<Transaction> transactions,
-    List<PaymentMethod> paymentMethods,
-    bool isLoading,
-  });
+  $Res call(
+      {double outstandingBalance,
+      List<Transaction> transactions,
+      List<PaymentMethod> paymentMethods,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -531,27 +510,24 @@ class _$BillingStateCopyWithImpl<$Res, $Val extends BillingState>
     Object? paymentMethods = null,
     Object? isLoading = null,
   }) {
-    return _then(
-      _value.copyWith(
-            outstandingBalance: null == outstandingBalance
-                ? _value.outstandingBalance
-                : outstandingBalance // ignore: cast_nullable_to_non_nullable
-                      as double,
-            transactions: null == transactions
-                ? _value.transactions
-                : transactions // ignore: cast_nullable_to_non_nullable
-                      as List<Transaction>,
-            paymentMethods: null == paymentMethods
-                ? _value.paymentMethods
-                : paymentMethods // ignore: cast_nullable_to_non_nullable
-                      as List<PaymentMethod>,
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      outstandingBalance: null == outstandingBalance
+          ? _value.outstandingBalance
+          : outstandingBalance // ignore: cast_nullable_to_non_nullable
+              as double,
+      transactions: null == transactions
+          ? _value.transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<Transaction>,
+      paymentMethods: null == paymentMethods
+          ? _value.paymentMethods
+          : paymentMethods // ignore: cast_nullable_to_non_nullable
+              as List<PaymentMethod>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
   }
 }
 
@@ -559,17 +535,15 @@ class _$BillingStateCopyWithImpl<$Res, $Val extends BillingState>
 abstract class _$$BillingStateImplCopyWith<$Res>
     implements $BillingStateCopyWith<$Res> {
   factory _$$BillingStateImplCopyWith(
-    _$BillingStateImpl value,
-    $Res Function(_$BillingStateImpl) then,
-  ) = __$$BillingStateImplCopyWithImpl<$Res>;
+          _$BillingStateImpl value, $Res Function(_$BillingStateImpl) then) =
+      __$$BillingStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    double outstandingBalance,
-    List<Transaction> transactions,
-    List<PaymentMethod> paymentMethods,
-    bool isLoading,
-  });
+  $Res call(
+      {double outstandingBalance,
+      List<Transaction> transactions,
+      List<PaymentMethod> paymentMethods,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -577,9 +551,8 @@ class __$$BillingStateImplCopyWithImpl<$Res>
     extends _$BillingStateCopyWithImpl<$Res, _$BillingStateImpl>
     implements _$$BillingStateImplCopyWith<$Res> {
   __$$BillingStateImplCopyWithImpl(
-    _$BillingStateImpl _value,
-    $Res Function(_$BillingStateImpl) _then,
-  ) : super(_value, _then);
+      _$BillingStateImpl _value, $Res Function(_$BillingStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of BillingState
   /// with the given fields replaced by the non-null parameter values.
@@ -591,39 +564,37 @@ class __$$BillingStateImplCopyWithImpl<$Res>
     Object? paymentMethods = null,
     Object? isLoading = null,
   }) {
-    return _then(
-      _$BillingStateImpl(
-        outstandingBalance: null == outstandingBalance
-            ? _value.outstandingBalance
-            : outstandingBalance // ignore: cast_nullable_to_non_nullable
-                  as double,
-        transactions: null == transactions
-            ? _value._transactions
-            : transactions // ignore: cast_nullable_to_non_nullable
-                  as List<Transaction>,
-        paymentMethods: null == paymentMethods
-            ? _value._paymentMethods
-            : paymentMethods // ignore: cast_nullable_to_non_nullable
-                  as List<PaymentMethod>,
-        isLoading: null == isLoading
-            ? _value.isLoading
-            : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
-      ),
-    );
+    return _then(_$BillingStateImpl(
+      outstandingBalance: null == outstandingBalance
+          ? _value.outstandingBalance
+          : outstandingBalance // ignore: cast_nullable_to_non_nullable
+              as double,
+      transactions: null == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<Transaction>,
+      paymentMethods: null == paymentMethods
+          ? _value._paymentMethods
+          : paymentMethods // ignore: cast_nullable_to_non_nullable
+              as List<PaymentMethod>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$BillingStateImpl implements _BillingState {
-  const _$BillingStateImpl({
-    required this.outstandingBalance,
-    required final List<Transaction> transactions,
-    required final List<PaymentMethod> paymentMethods,
-    this.isLoading = false,
-  }) : _transactions = transactions,
-       _paymentMethods = paymentMethods;
+  const _$BillingStateImpl(
+      {required this.outstandingBalance,
+      required final List<Transaction> transactions,
+      required final List<PaymentMethod> paymentMethods,
+      this.isLoading = false})
+      : _transactions = transactions,
+        _paymentMethods = paymentMethods;
 
   factory _$BillingStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$BillingStateImplFromJson(json);
@@ -662,14 +633,10 @@ class _$BillingStateImpl implements _BillingState {
             other is _$BillingStateImpl &&
             (identical(other.outstandingBalance, outstandingBalance) ||
                 other.outstandingBalance == outstandingBalance) &&
-            const DeepCollectionEquality().equals(
-              other._transactions,
-              _transactions,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._paymentMethods,
-              _paymentMethods,
-            ) &&
+            const DeepCollectionEquality()
+                .equals(other._transactions, _transactions) &&
+            const DeepCollectionEquality()
+                .equals(other._paymentMethods, _paymentMethods) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
   }
@@ -677,12 +644,11 @@ class _$BillingStateImpl implements _BillingState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    outstandingBalance,
-    const DeepCollectionEquality().hash(_transactions),
-    const DeepCollectionEquality().hash(_paymentMethods),
-    isLoading,
-  );
+      runtimeType,
+      outstandingBalance,
+      const DeepCollectionEquality().hash(_transactions),
+      const DeepCollectionEquality().hash(_paymentMethods),
+      isLoading);
 
   /// Create a copy of BillingState
   /// with the given fields replaced by the non-null parameter values.
@@ -694,17 +660,18 @@ class _$BillingStateImpl implements _BillingState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BillingStateImplToJson(this);
+    return _$$BillingStateImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _BillingState implements BillingState {
-  const factory _BillingState({
-    required final double outstandingBalance,
-    required final List<Transaction> transactions,
-    required final List<PaymentMethod> paymentMethods,
-    final bool isLoading,
-  }) = _$BillingStateImpl;
+  const factory _BillingState(
+      {required final double outstandingBalance,
+      required final List<Transaction> transactions,
+      required final List<PaymentMethod> paymentMethods,
+      final bool isLoading}) = _$BillingStateImpl;
 
   factory _BillingState.fromJson(Map<String, dynamic> json) =
       _$BillingStateImpl.fromJson;
