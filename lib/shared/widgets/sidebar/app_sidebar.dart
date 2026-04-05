@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_typography.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 
 class AppSidebar extends StatelessWidget {
   const AppSidebar({super.key});
@@ -11,7 +11,8 @@ class AppSidebar extends StatelessWidget {
     final location = GoRouterState.of(context).uri.path;
 
     return Container(
-      width: 300,
+      width: 309,
+      height: double.infinity,
       color: AppColors.sidebarBackground,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -19,106 +20,98 @@ class AppSidebar extends StatelessWidget {
           // Sidebar Header
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+            height: 90,
             color: AppColors.sidebarHeader,
+            padding: const EdgeInsets.symmetric(horizontal: 41.0),
+            alignment: Alignment.centerLeft,
             child: Text(
               'Member Portal',
               style: AppTypography.sidebarHeader,
             ),
           ),
           
+          const SizedBox(height: 32),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.zero,
               children: [
-                // Section 1: Home, Messages, Appointments
                 _SidebarItem(
-                  icon: Icons.home_outlined,
                   label: 'Home',
+                  icon: Icons.home_outlined,
                   isSelected: location == '/',
                   onTap: () => context.go('/'),
                 ),
                 _SidebarItem(
-                  icon: Icons.chat_bubble_outline,
                   label: 'Messages',
+                  icon: Icons.mail_outline,
                   isSelected: location == '/messages',
                   onTap: () => context.go('/messages'),
                 ),
                 _SidebarItem(
-                  icon: Icons.calendar_today_outlined,
                   label: 'Appointments',
+                  icon: Icons.calendar_today_outlined,
                   isSelected: location == '/appointments',
                   onTap: () => context.go('/appointments'),
                 ),
-                
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: Divider(height: 1, color: AppColors.divider),
-                ),
-                
-                // Section 2: Prescriptions, Lab Results, Questionnaires, Documents
+
+                const _SectionDivider(),
+
                 _SidebarItem(
-                  icon: Icons.medication_outlined,
                   label: 'Prescriptions',
+                  icon: Icons.medication_outlined,
                   isSelected: location == '/prescriptions',
                   onTap: () => context.go('/prescriptions'),
                 ),
                 _SidebarItem(
-                  icon: Icons.biotech_outlined,
                   label: 'Lab results',
+                  icon: Icons.science_outlined,
                   isSelected: location == '/lab-results',
                   onTap: () => context.go('/lab-results'),
                 ),
                 _SidebarItem(
-                  icon: Icons.assignment_outlined,
                   label: 'Questionnaires',
+                  icon: Icons.assignment_outlined,
                   isSelected: location == '/questionnaires',
                   onTap: () => context.go('/questionnaires'),
                 ),
                 _SidebarItem(
-                  icon: Icons.description_outlined,
                   label: 'Documents',
+                  icon: Icons.description_outlined,
                   isSelected: location == '/documents',
                   onTap: () => context.go('/documents'),
                 ),
-                
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: Divider(height: 1, color: AppColors.divider),
-                ),
-                
-                // Section 3: Insurance, Billing, Account
+
+                const _SectionDivider(),
+
                 _SidebarItem(
-                  icon: Icons.security_outlined,
                   label: 'Insurance',
+                  icon: Icons.verified_user_outlined,
                   isSelected: location == '/insurance',
                   onTap: () => context.go('/insurance'),
                 ),
                 _SidebarItem(
-                  icon: Icons.receipt_long_outlined,
                   label: 'Billing',
+                  icon: Icons.receipt_long_outlined,
                   isSelected: location == '/billing',
                   onTap: () => context.go('/billing'),
                 ),
                 _SidebarItem(
-                  icon: Icons.person_outline,
                   label: 'Account',
+                  icon: Icons.person_outline,
                   isSelected: location == '/account',
                   onTap: () => context.go('/account'),
                 ),
-                
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: Divider(height: 1, color: AppColors.divider),
-                ),
-                
-                // Section 4: Log Out
+
+                const _SectionDivider(),
+
                 _SidebarItem(
-                  icon: Icons.logout,
                   label: 'Log Out',
-                  isSelected: false,
-                  onTap: () {},
+                  icon: Icons.logout_outlined,
+                  isSelected: location == '/logout',
+                  color: AppColors.error,
+                  onTap: () => context.go('/logout'),
                 ),
+                const SizedBox(height: 32),
               ],
             ),
           ),
@@ -133,34 +126,64 @@ class _SidebarItem extends StatelessWidget {
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
+  final Color? color;
 
   const _SidebarItem({
     required this.icon,
     required this.label,
     required this.isSelected,
     required this.onTap,
+    this.color,
   });
 
   @override
   Widget build(BuildContext context) {
+    final activeColor = color ?? AppColors.activeIndicator;
+    final defaultColor = color ?? AppColors.textPrimary;
+
     return InkWell(
       onTap: onTap,
       child: Container(
-        color: isSelected ? Colors.white : Colors.transparent,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        height: 64,
+        padding: const EdgeInsets.symmetric(horizontal: 41.0),
         child: Row(
           children: [
-            Icon(icon, size: 24, color: isSelected ? AppColors.primaryBlue : AppColors.textSecondary),
-            const SizedBox(width: 16),
-            Text(
-              label,
-              style: AppTypography.sidebarItem.copyWith(
-                color: isSelected ? AppColors.primaryBlue : AppColors.textSecondary,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+            Expanded(
+              child: Text(
+                label,
+                style: AppTypography.sidebarItem.copyWith(
+                  color: isSelected ? activeColor : defaultColor,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                ),
               ),
             ),
+            if (isSelected)
+              Container(
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: activeColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _SectionDivider extends StatelessWidget {
+  const _SectionDivider();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 41.0),
+      child: Divider(
+        height: 1,
+        thickness: 1,
+        color: AppColors.divider,
       ),
     );
   }

@@ -11,52 +11,57 @@ class MessageViewModel extends _$MessageViewModel {
     final threads = [
       MessageThread(
         id: '1',
-        participantName: 'Dr. Sarah Johnson',
-        lastMessage: 'I sent the request to the specialty team.',
+        participantName: 'Dr. Sarah Smith',
+        lastMessage: 'Your lab results are ready for review.',
         lastTimestamp: now.subtract(const Duration(minutes: 5)),
-        unreadCount: 0,
+        unreadCount: 3,
         messages: [
           Message(
             id: 'm1',
-            content: 'Hello Jane, I reviewed your lab results.',
+            content: "Hello Jane, I've reviewed your recent bloodwork.",
             timestamp: now.subtract(const Duration(hours: 2)),
             senderType: MessageSenderType.provider,
+            type: MessageType.text,
           ),
           Message(
             id: 'm2',
-            content: 'Thank you doctor. What are the next steps?',
-            timestamp: now.subtract(const Duration(hours: 1, minutes: 30)),
-            senderType: MessageSenderType.patient,
+            content: "Your results are mostly within range, but I'd like to discuss the iron levels.",
+            timestamp: now.subtract(const Duration(hours: 1)),
+            senderType: MessageSenderType.provider,
+            type: MessageType.text,
           ),
           Message(
             id: 'm3',
-            content: 'I am requesting a consultation with a specialist.',
-            timestamp: now.subtract(const Duration(minutes: 10)),
+            content: 'Please schedule a brief follow-up.',
+            timestamp: now.subtract(const Duration(minutes: 30)),
             senderType: MessageSenderType.provider,
             type: MessageType.appointmentRequest,
-            actionLabel: 'Schedule',
-          ),
-          Message(
-            id: 'm4',
-            content: 'I sent the request to the specialty team.',
-            timestamp: now.subtract(const Duration(minutes: 5)),
-            senderType: MessageSenderType.provider,
+            actionLabel: 'Request Appointment',
+            actionType: 'appointment_link',
           ),
         ],
       ),
       MessageThread(
         id: '2',
-        participantName: 'Billing Department',
-        lastMessage: 'Your insurance has been verified.',
+        participantName: 'Care Team',
+        lastMessage: 'How are you feeling today?',
         lastTimestamp: now.subtract(const Duration(days: 1)),
         unreadCount: 0,
-        messages: [],
+        messages: [
+          Message(
+            id: 'm4',
+            content: 'Checking in on your progress with the new medication.',
+            timestamp: now.subtract(const Duration(days: 1)),
+            senderType: MessageSenderType.provider,
+            type: MessageType.text,
+          ),
+        ],
       ),
     ];
 
     return {
       'threads': threads,
-      'selectedThreadId': '1',
+      'selectedThreadId': threads.first.id,
     };
   }
 
@@ -65,6 +70,6 @@ class MessageViewModel extends _$MessageViewModel {
   }
 
   void sendMessage(String content) {
-    // Mock send logic
+    // Simulated send logic
   }
 }

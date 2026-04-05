@@ -9,29 +9,48 @@ class PrescriptionViewModel extends _$PrescriptionViewModel {
   List<Prescription> build() {
     return [
       Prescription(
-        id: 'p1',
-        medicationName: 'Lisinopril 10 mg Tablet',
-        dosage: 'Take 1 tablet by mouth daily',
-        instructions: 'Take in the morning with a full glass of water.',
-        providerName: 'Dr. Sarah Johnson',
-        lastFilled: DateTime.now().subtract(const Duration(days: 15)),
-        refillsRemaining: 2,
+        id: '1',
+        drugName: 'Lisinopril',
+        dosage: '10mg',
+        frequency: 'Daily',
         status: PrescriptionStatus.active,
+        lastRefill: DateTime.now().subtract(const Duration(days: 15)),
+        refillsRemaining: 2,
       ),
       Prescription(
-        id: 'p2',
-        medicationName: 'Metoprolol Tartrate 25 mg Tablet',
-        dosage: 'Take 1 tablet by mouth twice daily',
-        instructions: 'Take with food.',
-        providerName: 'Dr. Sarah Johnson',
-        lastFilled: DateTime.now().subtract(const Duration(days: 5)),
-        refillsRemaining: 1,
+        id: '2',
+        drugName: 'Amlodipine',
+        dosage: '5mg',
+        frequency: 'Daily',
         status: PrescriptionStatus.active,
+        lastRefill: DateTime.now().subtract(const Duration(days: 45)),
+        refillsRemaining: 1,
+      ),
+      Prescription(
+        id: '3',
+        drugName: 'Metformin',
+        dosage: '500mg',
+        frequency: 'Twice daily',
+        status: PrescriptionStatus.onHold,
+        lastRefill: DateTime.now().subtract(const Duration(days: 90)),
+        refillsRemaining: 0,
+      ),
+      Prescription(
+        id: '4',
+        drugName: 'Amoxicillin',
+        dosage: '250mg',
+        frequency: 'Every 8 hours',
+        status: PrescriptionStatus.expired,
+        lastRefill: DateTime.now().subtract(const Duration(days: 200)),
+        refillsRemaining: 0,
       ),
     ];
   }
 
   void requestRefill(String id) {
-    // Mock logic for refill request
+    state = [
+      for (final p in state)
+        if (p.id == id) p.copyWith(status: PrescriptionStatus.onHold) else p,
+    ];
   }
 }

@@ -1,26 +1,38 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../model/account_state.dart';
 
 part 'account_view_model.g.dart';
 
 @riverpod
 class AccountViewModel extends _$AccountViewModel {
   @override
-  Map<String, dynamic> build() {
-    return {
-      'profile': {
-        'name': 'Jane Doe',
-        'dob': '01/01/1990',
-        'email': 'jane.doe@example.com',
-        'phone': '(555) 000-1234',
-        'address': '123 Main St, Anytown, ST 12345',
-      },
-      'delegates': [
-        {'id': 'd1', 'name': 'John Doe', 'relation': 'Father'},
-      ],
-    };
+  AccountState build() {
+    return const AccountState();
   }
 
-  void updateProfile(String field, String value) {
-    // Mock logic for updating profile
+  void updateFullName(String name) {
+    state = state.copyWith(fullName: name);
+  }
+
+  void updateEmail(String email) {
+    state = state.copyWith(email: email);
+  }
+
+  void updateLanguage(String language) {
+    state = state.copyWith(language: language);
+  }
+
+  void toggleEmailNotifications(bool value) {
+    state = state.copyWith(emailNotifications: value);
+  }
+
+  void toggleSmsNotifications(bool value) {
+    state = state.copyWith(smsNotifications: value);
+  }
+  
+  Future<void> saveChanges() async {
+    state = state.copyWith(isLoading: true);
+    await Future.delayed(const Duration(seconds: 1));
+    state = state.copyWith(isLoading: false);
   }
 }

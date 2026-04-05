@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../viewmodel/account_view_model.dart';
+import '../widgets/profile_item.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 
@@ -7,107 +10,145 @@ class AccountScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return DefaultTabController(
-      length: 5,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Account', style: AppTypography.h1),
-          const SizedBox(height: 32),
-          const TabBar(
-            isScrollable: true,
-            tabAlignment: TabAlignment.start,
-            labelColor: AppColors.primaryBlue,
-            unselectedLabelColor: AppColors.textSecondary,
-            indicatorColor: AppColors.primaryBlue,
-            tabs: [
-              Tab(text: 'Personal Information'),
-              Tab(text: 'Delegates'),
-              Tab(text: 'Security'),
-              Tab(text: 'Notifications'),
-              Tab(text: 'Preferences'),
-            ],
-          ),
-          const SizedBox(height: 32),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(32),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.border),
-              ),
-              child: TabBarView(
-                children: [
-                   // Personal Information Tab
-                  _PersonalInfoTab(),
-                  // Delegate Tab
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const _DelegateItem(name: 'John Doe', relation: 'Father'),
-                        const Divider(),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text('+ Add Delegate', style: TextStyle(color: AppColors.primaryBlue)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Center(child: Text('Security Settings')),
-                  const Center(child: Text('Notification Preferences')),
-                  const Center(child: Text('App Preferences')),
+    final state = ref.watch(accountViewModelProvider);
+    final notifier = ref.read(accountViewModelProvider.notifier);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DefaultTabController(
+          length: 3,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TabBar(
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
+                indicatorColor: AppColors.activeIndicator,
+                indicatorSize: TabBarIndicatorSize.tab,
+                labelColor: AppColors.textPrimary,
+                unselectedLabelColor: AppColors.textSecondary,
+                labelStyle: AppTypography.h3,
+                unselectedLabelStyle: AppTypography.h3.copyWith(
+                  color: AppColors.textSecondary,
+                ),
+                padding: EdgeInsets.zero,
+                dividerColor: Colors.transparent,
+                tabs: const [
+                  Tab(text: 'Settings'),
+                  Tab(text: 'Notifications'),
+                  Tab(text: 'Delegate / Care Givers'),
                 ],
               ),
-            ),
+              const SizedBox(height: 32),
+              SizedBox(
+                width: 653,
+                height: 500,
+                child: TabBarView(
+                  children: [
+                    // Settings Tab
+                    SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ProfileItem(
+                            label: 'Full Name',
+                            value: state.fullName,
+                            onTap: () {},
+                          ),
+                          const Divider(),
+                          ProfileItem(
+                            label: 'Email',
+                            value: state.email,
+                            actionLabel: 'Change',
+                            onTap: () {},
+                          ),
+                          const Divider(),
+                          ProfileItem(
+                            label: 'Password',
+                            value: '************',
+                            actionLabel: 'Change',
+                            onTap: () {},
+                          ),
+                          const Divider(),
+                          ProfileItem(
+                            label: 'Language',
+                            value: state.language,
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Notifications Tab
+                    SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          _NotificationToggle(
+                            label: 'Email Notifications',
+                            value: state.emailNotifications,
+                            onChanged: notifier.toggleEmailNotifications,
+                          ),
+                          const Divider(),
+                          _NotificationToggle(
+                            label: 'SMS Notifications',
+                            value: state.smsNotifications,
+                            onChanged: notifier.toggleSmsNotifications,
+                          ),
+                          const Divider(),
+                          _NotificationToggle(
+                            label: 'Appointment Reminders',
+                            value: true,
+                            onChanged: (val) {},
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Delegate Tab
+                    SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          _DelegateItem(name: 'John Doe', relation: 'Father'),
+                          const Divider(),
+                          const SizedBox(height: 16),
+                          TextButton(
+                            onPressed: () {},
+                            child: const Text('+ Add Delegate', style: TextStyle(color: AppColors.primaryBlue)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-class _PersonalInfoTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const CircleAvatar(
-            radius: 50,
-            backgroundColor: Color(0xFFE5E7EB),
-            child: Icon(Icons.person, size: 50, color: Colors.grey),
-          ),
-          const SizedBox(height: 32),
-          _ProfileField(label: 'Full Name', value: 'Jane Doe'),
-          _ProfileField(label: 'Date of Birth', value: '01/01/1990'),
-          _ProfileField(label: 'Email', value: 'jane.doe@example.com'),
-          _ProfileField(label: 'Phone', value: '(555) 000-1234'),
-          _ProfileField(label: 'Address', value: '123 Main St, Anytown, ST 12345'),
-        ],
-      ),
-    );
-  }
-}
-
-class _ProfileField extends StatelessWidget {
+class _NotificationToggle extends StatelessWidget {
   final String label;
-  final String value;
-  const _ProfileField({required this.label, required this.value});
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  const _NotificationToggle({
+    required this.label,
+    required this.value,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(label, style: AppTypography.bodySmall),
-          const SizedBox(height: 8),
-          Text(value, style: AppTypography.bodyLarge.copyWith(fontWeight: FontWeight.w600)),
-          const Divider(),
-        ],
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      title: Text(label, style: AppTypography.bodyLarge),
+      trailing: Switch(
+        value: value,
+        onChanged: onChanged,
+        activeTrackColor: AppColors.primaryBlue.withValues(alpha: 0.5),
+        activeThumbColor: AppColors.primaryBlue,
       ),
     );
   }
@@ -121,12 +162,20 @@ class _DelegateItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(name, style: AppTypography.bodyLarge),
-      subtitle: Text(relation, style: AppTypography.bodySmall),
-      trailing: TextButton(
-        onPressed: () {},
-        child: const Text('Remove', style: TextStyle(color: AppColors.error)),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(name, style: AppTypography.contentStyle),
+              Text(relation, style: AppTypography.bodySmall),
+            ],
+          ),
+          TextButton(onPressed: () {}, child: const Text('Manage Access')),
+        ],
       ),
     );
   }

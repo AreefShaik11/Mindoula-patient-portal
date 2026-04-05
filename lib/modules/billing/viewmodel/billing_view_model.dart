@@ -1,22 +1,54 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../model/billing_model.dart';
 
 part 'billing_view_model.g.dart';
 
 @riverpod
 class BillingViewModel extends _$BillingViewModel {
   @override
-  Map<String, dynamic> build() {
-    return {
-      'balance': 120.0,
-      'nextStatementDate': DateTime.now().add(const Duration(days: 15)),
-      'statements': [
-        {'id': 'S1', 'date': DateTime.now().subtract(const Duration(days: 30)), 'amount': 120.0, 'status': 'Due'},
-        {'id': 'S2', 'date': DateTime.now().subtract(const Duration(days: 60)), 'amount': 250.0, 'status': 'Paid'},
+  BillingState build() {
+    return BillingState(
+      outstandingBalance: 120.50,
+      transactions: [
+        Transaction(
+          id: '1',
+          date: DateTime.now().subtract(const Duration(days: 5)),
+          description: 'Office Visit - Dr. Smith',
+          amount: 75.00,
+          status: BillingStatus.paid,
+        ),
+        Transaction(
+          id: '2',
+          date: DateTime.now().subtract(const Duration(days: 30)),
+          description: 'Lab Work - Blood Panel',
+          amount: 45.50,
+          status: BillingStatus.outstanding,
+        ),
+        Transaction(
+          id: '3',
+          date: DateTime.now().subtract(const Duration(days: 60)),
+          description: 'Pharmacy Co-pay',
+          amount: 15.00,
+          status: BillingStatus.paid,
+        ),
       ],
-    };
+      paymentMethods: [
+        const PaymentMethod(
+          id: '1',
+          type: 'Visa',
+          lastFour: '4242',
+          isDefault: true,
+        ),
+      ],
+    );
   }
 
-  void pay(double amount) {
-    // Mock logic for payment
+  void pay(double amount) async {
+    state = state.copyWith(isLoading: true);
+    await Future.delayed(const Duration(seconds: 1));
+    state = state.copyWith(
+      isLoading: false,
+      outstandingBalance: state.outstandingBalance - amount,
+    );
   }
 }

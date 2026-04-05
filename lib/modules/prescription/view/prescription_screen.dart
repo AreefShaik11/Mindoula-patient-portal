@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import '../viewmodel/prescription_view_model.dart';
 import '../model/prescription.dart';
 import '../widgets/status_pill.dart';
@@ -17,33 +16,35 @@ class PrescriptionScreen extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Prescriptions', style: AppTypography.h1),
-            ElevatedButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.add),
-              label: const Text('Add Prescription'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryBlue,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              ),
-            ),
-          ],
-        ),
+        Text('Prescriptions', style: AppTypography.h2),
         const SizedBox(height: 32),
-        Expanded(
-          child: ListView.separated(
-            itemCount: prescriptions.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 16),
-            itemBuilder: (context, index) {
-              final p = prescriptions[index];
-              return _PrescriptionCard(prescription: p);
-            },
-          ),
+        _PrescriptionSection(
+          title: 'Active prescriptions',
+          items: prescriptions.where((p) => p.status == PrescriptionStatus.active).toList(),
         ),
+        const SizedBox(height: 48),
+        _PrescriptionSection(
+          title: 'Refill requests & history',
+          items: prescriptions.where((p) => p.status != PrescriptionStatus.active).toList(),
+        ),
+      ],
+    );
+  }
+}
+
+class _PrescriptionSection extends StatelessWidget {
+  final String title;
+  final List<Prescription> items;
+  const _PrescriptionSection({required this.title, required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title, style: AppTypography.h3),
+        const SizedBox(height: 16),
+        ...items.map((p) => _PrescriptionCard(prescription: p)),
       ],
     );
   }
@@ -56,89 +57,55 @@ class _PrescriptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      width: 1091,
+      height: 104,
+      margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppColors.border),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Row(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(prescription.medicationName, style: AppTypography.h3),
-              StatusPill(status: prescription.status),
-            ],
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(prescription.drugName, style: AppTypography.contentStyle.copyWith(fontSize: 18)),
+                const SizedBox(height: 4),
+                Text('${prescription.dosage} - ${prescription.frequency}', style: AppTypography.bodyMedium.copyWith(color: AppColors.textSecondary)),
+              ],
+            ),
           ),
-          const SizedBox(height: 12),
-          Text(prescription.dosage, style: AppTypography.bodyLarge),
-          const SizedBox(height: 8),
-          Text(prescription.instructions, style: AppTypography.bodyMedium),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
-            child: Divider(height: 1),
+          Expanded(
+            flex: 2,
+            child: Center(child: StatusPill(status: prescription.status)),
           ),
-          Row(
-            children: [
-              _InfoItem(label: 'Provider', value: prescription.providerName),
-              const SizedBox(width: 40),
-              _InfoItem(label: 'Last filled', value: DateFormat('MMM dd, yyyy').format(prescription.lastFilled)),
-              const SizedBox(width: 40),
-              _InfoItem(label: 'Refills remaining', value: prescription.refillsRemaining.toString()),
-              const Spacer(),
-              _ActionButtons(prescription: prescription),
-            ],
+          Expanded(
+            flex: 2,
+            child: Text(
+              '${prescription.refillsRemaining} refills left',
+              style: AppTypography.bodySmall,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(
+            width: 133,
+            height: 40,
+            child: ElevatedButton(
+              onPressed: prescription.refillsRemaining > 0 ? () {} : null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primaryBlue,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              ),
+              child: const Text('Request Refill'),
+            ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _InfoItem extends StatelessWidget {
-  final String label;
-  final String value;
-  const _InfoItem({required this.label, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: AppTypography.bodySmall),
-        const SizedBox(height: 4),
-        Text(value, style: AppTypography.bodyMedium.copyWith(fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
-      ],
-    );
-  }
-}
-
-class _ActionButtons extends StatelessWidget {
-  final Prescription prescription;
-  const _ActionButtons({required this.prescription});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        TextButton(
-          onPressed: () {},
-          child: const Text('View history', style: TextStyle(color: AppColors.textSecondary)),
-        ),
-        const SizedBox(width: 12),
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            foregroundColor: AppColors.primaryBlue,
-            side: const BorderSide(color: AppColors.primaryBlue),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          ),
-          child: const Text('Request refill'),
-        ),
-      ],
     );
   }
 }

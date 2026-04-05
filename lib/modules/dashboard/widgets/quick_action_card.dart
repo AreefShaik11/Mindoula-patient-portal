@@ -3,15 +3,13 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 
 class QuickActionCard extends StatelessWidget {
-  final IconData icon;
-  final String label;
+  final String title;
   final VoidCallback onTap;
   final bool isNotification;
 
   const QuickActionCard({
     super.key,
-    required this.icon,
-    required this.label,
+    required this.title,
     required this.onTap,
     this.isNotification = false,
   });
@@ -21,34 +19,38 @@ class QuickActionCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(24),
+        width: 653,
+        height: 104,
         decoration: BoxDecoration(
-          color: isNotification ? AppColors.messageBlue : Colors.white,
+          color: AppColors.cardBackground,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isNotification ? AppColors.primaryBlue : AppColors.border,
-            width: isNotification ? 2 : 1,
-          ),
+          border: Border.all(color: AppColors.border),
         ),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Row(
           children: [
-            Icon(
-              icon,
-              size: 32,
-              color: AppColors.primaryBlue,
-            ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                label,
-                style: AppTypography.h3.copyWith(
-                  color: isNotification ? AppColors.primaryBlue : AppColors.textPrimary,
+            if (isNotification)
+              Container(
+                width: 48,
+                height: 48,
+                margin: const EdgeInsets.only(right: 16),
+                decoration: const BoxDecoration(
+                  color: AppColors.notificationBlue,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.mail_outline,
+                  color: Colors.white,
+                  size: 24,
                 ),
               ),
-            ),
-            Icon(
-              Icons.chevron_right,
-              color: isNotification ? AppColors.primaryBlue : AppColors.textSecondary,
+            Expanded(
+              child: Text(
+                title,
+                style: isNotification 
+                    ? AppTypography.notificationText 
+                    : AppTypography.h3.copyWith(fontWeight: FontWeight.w500),
+              ),
             ),
           ],
         ),

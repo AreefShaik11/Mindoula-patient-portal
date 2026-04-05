@@ -6,15 +6,12 @@ part of 'billing_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$billingViewModelHash() => r'c9db50abcfc66315a82084a58a3b253b755d2234';
+String _$billingViewModelHash() => r'cfb1ed0d3500ef9b174859586d1816c97f6dc48c';
 
 /// See also [BillingViewModel].
 @ProviderFor(BillingViewModel)
 final billingViewModelProvider =
-    AutoDisposeNotifierProvider<
-      BillingViewModel,
-      Map<String, dynamic>
-    >.internal(
+    AutoDisposeNotifierProvider<BillingViewModel, BillingState>.internal(
       BillingViewModel.new,
       name: r'billingViewModelProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -24,6 +21,6 @@ final billingViewModelProvider =
       allTransitiveDependencies: null,
     );
 
-typedef _$BillingViewModel = AutoDisposeNotifier<Map<String, dynamic>>;
+typedef _$BillingViewModel = AutoDisposeNotifier<BillingState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

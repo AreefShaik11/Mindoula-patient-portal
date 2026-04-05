@@ -7,15 +7,12 @@ part of 'dashboard_view_model.dart';
 // **************************************************************************
 
 String _$dashboardViewModelHash() =>
-    r'20330efcbcc786cb4190afb6841d20a0958163b7';
+    r'ba0cb3ad382e5ef2126309ed146a3ad9de10f337';
 
 /// See also [DashboardViewModel].
 @ProviderFor(DashboardViewModel)
 final dashboardViewModelProvider =
-    AutoDisposeNotifierProvider<
-      DashboardViewModel,
-      Map<String, dynamic>
-    >.internal(
+    AutoDisposeNotifierProvider<DashboardViewModel, DashboardState>.internal(
       DashboardViewModel.new,
       name: r'dashboardViewModelProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -25,6 +22,6 @@ final dashboardViewModelProvider =
       allTransitiveDependencies: null,
     );
 
-typedef _$DashboardViewModel = AutoDisposeNotifier<Map<String, dynamic>>;
+typedef _$DashboardViewModel = AutoDisposeNotifier<DashboardState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

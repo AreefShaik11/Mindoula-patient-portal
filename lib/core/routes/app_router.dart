@@ -16,7 +16,9 @@ GoRouter appRouter(AppRouterRef ref) {
     initialLocation: '/',
     routes: [
       ShellRoute(
-        builder: (context, state, child) => AppLayout(child: child),
+        builder: (context, state, child) {
+          return AppLayout(child: child);
+        },
         routes: [
           GoRoute(
             path: '/',
@@ -27,8 +29,28 @@ GoRouter appRouter(AppRouterRef ref) {
             builder: (context, state) => const MessageCenterScreen(),
           ),
           GoRoute(
+            path: '/appointments',
+            builder: (context, state) => const _PlaceholderScreen(title: 'Appointments'),
+          ),
+          GoRoute(
             path: '/prescriptions',
             builder: (context, state) => const PrescriptionScreen(),
+          ),
+          GoRoute(
+            path: '/lab-results',
+            builder: (context, state) => const _PlaceholderScreen(title: 'Lab Results'),
+          ),
+          GoRoute(
+            path: '/questionnaires',
+            builder: (context, state) => const _PlaceholderScreen(title: 'Questionnaires'),
+          ),
+          GoRoute(
+            path: '/documents',
+            builder: (context, state) => const _PlaceholderScreen(title: 'Documents'),
+          ),
+          GoRoute(
+            path: '/insurance',
+            builder: (context, state) => const _PlaceholderScreen(title: 'Insurance'),
           ),
           GoRoute(
             path: '/billing',
@@ -38,12 +60,10 @@ GoRouter appRouter(AppRouterRef ref) {
             path: '/account',
             builder: (context, state) => const AccountScreen(),
           ),
-          // Mock routes for the rest of sidebar
-          GoRoute(path: '/appointments', builder: (context, state) => const _PlaceholderScreen(title: 'Appointments')),
-          GoRoute(path: '/lab-results', builder: (context, state) => const _PlaceholderScreen(title: 'Lab Results')),
-          GoRoute(path: '/questionnaires', builder: (context, state) => const _PlaceholderScreen(title: 'Questionnaires')),
-          GoRoute(path: '/documents', builder: (context, state) => const _PlaceholderScreen(title: 'Documents')),
-          GoRoute(path: '/insurance', builder: (context, state) => const _PlaceholderScreen(title: 'Insurance')),
+          GoRoute(
+            path: '/logout',
+            builder: (context, state) => const _PlaceholderScreen(title: 'Logging Out...'),
+          ),
         ],
       ),
     ],

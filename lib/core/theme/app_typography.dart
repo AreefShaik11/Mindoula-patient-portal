@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 class AppTypography {
-  // Headings
+  static final String fontFamily = GoogleFonts.inter().fontFamily!;
+
   static TextStyle get h1 => GoogleFonts.inter(
         fontSize: 32,
         fontWeight: FontWeight.w700,
@@ -22,7 +23,6 @@ class AppTypography {
         color: AppColors.textPrimary,
       );
 
-  // Body
   static TextStyle get bodyLarge => GoogleFonts.inter(
         fontSize: 16,
         fontWeight: FontWeight.w400,
@@ -32,7 +32,7 @@ class AppTypography {
   static TextStyle get bodyMedium => GoogleFonts.inter(
         fontSize: 14,
         fontWeight: FontWeight.w400,
-        color: AppColors.textSecondary,
+        color: AppColors.textPrimary,
       );
 
   static TextStyle get bodySmall => GoogleFonts.inter(
@@ -41,48 +41,46 @@ class AppTypography {
         color: AppColors.textSecondary,
       );
 
-  // Functional
-  static TextStyle get labelLarge => GoogleFonts.inter(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        color: AppColors.primaryBlue,
+  // Form and Sidebar specific
+  static TextStyle get labelStyle => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w300, 
+        color: AppColors.textPrimary,
+      );
+
+  static TextStyle get contentStyle => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      );
+
+  static TextStyle get sidebarItem => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textPrimary,
+      );
+
+  static TextStyle get sidebarHeader => GoogleFonts.inter(
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: AppColors.textWhite,
       );
 
   static TextStyle get buttonLarge => GoogleFonts.inter(
         fontSize: 16,
         fontWeight: FontWeight.w600,
-        color: Colors.white,
-      );
-
-  // Content Styles
-  static TextStyle get contentStyle => GoogleFonts.inter(
-        fontSize: 18,
-        fontWeight: FontWeight.w400,
-        color: AppColors.textPrimary,
-      );
-
-  // Sidebar
-  static TextStyle get sidebarItem => GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-        color: const Color(0xFF393B3F),
-      );
-
-  static TextStyle get sidebarHeader => GoogleFonts.inter(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
         color: AppColors.textWhite,
       );
-
+      
   static TextStyle get sectionHeader => GoogleFonts.inter(
-        fontSize: 16,
-        fontWeight: FontWeight.w300,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
         color: AppColors.textPrimary,
       );
-
+      
   static TextStyle get notificationText => GoogleFonts.inter(
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: FontWeight.w500,
-        color: AppColors.notificationBlue,
+        color: AppColors.textPrimary,
       );
 }

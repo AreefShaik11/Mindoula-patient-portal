@@ -11,137 +11,86 @@ class MessageCenterScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final messageData = ref.watch(messageViewModelProvider);
-    final threads = messageData['threads'] as List<MessageThread>;
-    final selectedThreadId = messageData['selectedThreadId'] as String;
-    final selectedThread = threads.firstWhere((t) => t.id == selectedThreadId);
+    final state = ref.watch(messageViewModelProvider);
+    final threads = state['threads'] as List<MessageThread>;
+    final selectedId = state['selectedThreadId'] as String;
+    final selectedThread = threads.firstWhere((t) => t.id == selectedId);
 
-    return Container(
-      height: MediaQuery.of(context).size.height - 150,
-      decoration: BoxDecoration(
-        color: AppColors.background,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.border),
-      ),
-      child: Row(
-        children: [
-          // Sidebar: Message List
-          _MessageList(
-            threads: threads,
-            selectedId: selectedThreadId,
-            onSelect: (id) => ref.read(messageViewModelProvider.notifier).selectThread(id),
-          ),
-          const VerticalDivider(width: 1),
-          // Main: Message Thread
-          Expanded(
-            child: _MessageThreadView(thread: selectedThread),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _MessageList extends StatelessWidget {
-  final List<MessageThread> threads;
-  final String selectedId;
-  final Function(String) onSelect;
-
-  const _MessageList({
-    required this.threads,
-    required this.selectedId,
-    required this.onSelect,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 400,
-      color: AppColors.sidebarBackground,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Messages', style: AppTypography.h3),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.edit_square, color: AppColors.primaryBlue),
-                ),
-              ],
-            ),
-          ),
-          const Divider(height: 1),
-          Expanded(
-            child: ListView.separated(
-              itemCount: threads.length,
-              separatorBuilder: (context, index) => const Divider(height: 1),
-              itemBuilder: (context, index) {
-                final t = threads[index];
-                final isSelected = t.id == selectedId;
-                return ListTile(
-                  onTap: () => onSelect(t.id),
-                  tileColor: isSelected ? Colors.white : Colors.transparent,
-                  title: Text(t.participantName, style: AppTypography.contentStyle),
-                  subtitle: Text(t.lastMessage, maxLines: 1, overflow: TextOverflow.ellipsis),
-                  trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(DateFormat('hh:mm').format(t.lastTimestamp), style: const TextStyle(fontSize: 11, color: AppColors.textSecondary)),
-                      if (t.unreadCount > 0)
-                        Container(
-                          margin: const EdgeInsets.only(top: 4),
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(color: AppColors.primaryBlue, borderRadius: BorderRadius.circular(10)),
-                          child: Text(t.unreadCount.toString(), style: const TextStyle(color: Colors.white, fontSize: 10)),
-                        ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _MessageThreadView extends StatelessWidget {
-  final MessageThread thread;
-
-  const _MessageThreadView({required this.thread});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: const EdgeInsets.all(16),
-          color: Colors.white,
-          child: Row(
-            children: [
-              const CircleAvatar(backgroundColor: Color(0xFFE5E7EB), child: Icon(Icons.person, color: Colors.grey)),
-              const SizedBox(width: 12),
-              Text(thread.participantName, style: AppTypography.contentStyle),
-            ],
-          ),
-        ),
-        const Divider(height: 1),
-        Expanded(
-          child: ListView.builder(
-            padding: const EdgeInsets.all(24),
-            itemCount: thread.messages.length,
+        // Thread List
+        SizedBox(
+          width: 350,
+          child: ListView.separated(
+            itemCount: threads.length,
+            separatorBuilder: (context, index) => const Divider(),
             itemBuilder: (context, index) {
-              final m = thread.messages[index];
-              return _MessageBubble(message: m);
+              final t = threads[index];
+              return ListTile(
+                selected: t.id == selectedId,
+                selectedTileColor: AppColors.messageBlue.withValues(alpha: 0.3),
+                title: Text(t.participantName, style: AppTypography.h3.copyWith(fontSize: 16)),
+                subtitle: Text(t.lastMessage, maxLines: 1, overflow: TextOverflow.ellipsis),
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(DateFormat('hh:mm').format(t.lastTimestamp), style: TextStyle(fontSize: 11, color: AppColors.textSecondary)),
+                    if (t.unreadCount > 0)
+                      Container(
+                        margin: const EdgeInsets.only(top: 4),
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(color: AppColors.primaryBlue, borderRadius: BorderRadius.circular(10)),
+                        child: Text('${t.unreadCount}', style: const TextStyle(color: Colors.white, fontSize: 10)),
+                      ),
+                  ],
+                ),
+                onTap: () => ref.read(messageViewModelProvider.notifier).selectThread(t.id),
+              );
             },
           ),
         ),
-        const Divider(height: 1),
-        _MessageInputArea(),
+        const VerticalDivider(width: 1),
+        // Chat View
+        Expanded(
+          child: Column(
+            children: [
+              // Header
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Row(
+                  children: [
+                    CircleAvatar(backgroundColor: AppColors.primaryBlue.withValues(alpha: 0.1), child: Text(selectedThread.participantName[0])),
+                    const SizedBox(width: 12),
+                    Text(selectedThread.participantName, style: AppTypography.h3),
+                  ],
+                ),
+              ),
+              const Divider(),
+              // Messages
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(24),
+                  itemCount: selectedThread.messages.length,
+                  itemBuilder: (context, index) {
+                    final message = selectedThread.messages[index];
+                    return _MessageBubble(message: message);
+                  },
+                ),
+              ),
+              // Input
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Type a message...',
+                    suffixIcon: IconButton(icon: const Icon(Icons.send_rounded, color: AppColors.primaryBlue), onPressed: () {}),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -149,106 +98,50 @@ class _MessageThreadView extends StatelessWidget {
 
 class _MessageBubble extends StatelessWidget {
   final Message message;
-
   const _MessageBubble({required this.message});
 
   @override
   Widget build(BuildContext context) {
-    final isProvider = message.senderType == MessageSenderType.provider;
-    
+    final isUser = message.senderType == MessageSenderType.user;
     return Align(
-      alignment: isProvider ? Alignment.centerLeft : Alignment.centerRight,
+      alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         constraints: const BoxConstraints(maxWidth: 500),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isProvider ? Colors.white : AppColors.messageBlue,
-          borderRadius: BorderRadius.circular(16),
-          border: isProvider ? Border.all(color: AppColors.border) : null,
+          color: isUser ? AppColors.primaryBlue : AppColors.messageBlue,
+          borderRadius: BorderRadius.circular(16).copyWith(
+            topLeft: isUser ? const Radius.circular(16) : Radius.zero,
+            bottomRight: isUser ? Radius.zero : const Radius.circular(16),
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(message.content, style: AppTypography.bodyMedium),
+            Text(
+              message.content,
+              style: TextStyle(color: isUser ? Colors.white : AppColors.textPrimary, fontSize: 16),
+            ),
             if (message.type == MessageType.appointmentRequest)
-              _SpecialtyCard(
-                label: message.actionLabel ?? 'Request',
-                onTap: () {},
-              )
-            else if (message.type == MessageType.prescriptionUpdate)
-              Container(
-                margin: const EdgeInsets.only(top: 8),
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(color: AppColors.messageBeige, borderRadius: BorderRadius.circular(8)),
-                child: Row(
-                  children: [
-                    const Icon(Icons.medication, size: 20, color: AppColors.warning),
-                    const SizedBox(width: 8),
-                    Text('Prescription update', style: AppTypography.bodyMedium),
-                  ],
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: AppColors.primaryBlue,
+                  ),
+                  child: Text(message.actionLabel ?? 'Request'),
                 ),
               ),
             const SizedBox(height: 4),
             Text(
-              DateFormat('hh:mm AM').format(message.timestamp),
-              style: const TextStyle(fontSize: 10, color: AppColors.textSecondary),
+              DateFormat('hh:mm').format(message.timestamp),
+              style: TextStyle(color: (isUser ? Colors.white : AppColors.textSecondary).withValues(alpha: 0.7), fontSize: 10),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _SpecialtyCard extends StatelessWidget {
-  final String label;
-  final VoidCallback onTap;
-
-  const _SpecialtyCard({required this.label, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 12),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: AppColors.messageBeige,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Expanded(child: Text('Appointment request')),
-          TextButton(
-            onPressed: onTap,
-            child: Text(label, style: const TextStyle(color: AppColors.primaryBlue, fontWeight: FontWeight.w600)),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _MessageInputArea extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        children: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.attach_file)),
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Type a message...',
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              ),
-            ),
-          ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.send, color: AppColors.primaryBlue)),
-        ],
       ),
     );
   }

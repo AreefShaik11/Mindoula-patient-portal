@@ -9,29 +9,28 @@ part of 'prescription.dart';
 _$PrescriptionImpl _$$PrescriptionImplFromJson(Map<String, dynamic> json) =>
     _$PrescriptionImpl(
       id: json['id'] as String,
-      medicationName: json['medicationName'] as String,
+      drugName: json['drugName'] as String,
       dosage: json['dosage'] as String,
-      instructions: json['instructions'] as String,
-      providerName: json['providerName'] as String,
-      lastFilled: DateTime.parse(json['lastFilled'] as String),
-      refillsRemaining: (json['refillsRemaining'] as num).toInt(),
+      frequency: json['frequency'] as String,
       status: $enumDecode(_$PrescriptionStatusEnumMap, json['status']),
+      lastRefill: DateTime.parse(json['lastRefill'] as String),
+      refillsRemaining: (json['refillsRemaining'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$PrescriptionImplToJson(_$PrescriptionImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'medicationName': instance.medicationName,
+      'drugName': instance.drugName,
       'dosage': instance.dosage,
-      'instructions': instance.instructions,
-      'providerName': instance.providerName,
-      'lastFilled': instance.lastFilled.toIso8601String(),
-      'refillsRemaining': instance.refillsRemaining,
+      'frequency': instance.frequency,
       'status': _$PrescriptionStatusEnumMap[instance.status]!,
+      'lastRefill': instance.lastRefill.toIso8601String(),
+      'refillsRemaining': instance.refillsRemaining,
     };
 
 const _$PrescriptionStatusEnumMap = {
   PrescriptionStatus.active: 'active',
-  PrescriptionStatus.pending: 'pending',
+  PrescriptionStatus.stopped: 'stopped',
+  PrescriptionStatus.onHold: 'onHold',
   PrescriptionStatus.expired: 'expired',
 };

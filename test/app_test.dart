@@ -16,7 +16,7 @@ void main() {
     );
 
     // Initial load: Should see "Hello, Jane"
-    expect(find.text('Hello, Jane'), findsOneWidget);
+    expect(find.textContaining('Hello, Jane'), findsOneWidget);
     
     // Check Sidebar items
     expect(find.text('Home'), findsOneWidget);
@@ -24,9 +24,10 @@ void main() {
     expect(find.text('Appointments'), findsOneWidget);
     
     // Check Appointment Card
-    expect(find.text('Upcoming appointment'), findsOneWidget);
+    expect(find.text('Upcoming appointment'), findsNWidgets(2)); // Title + Card label
     expect(find.text('Join Video'), findsOneWidget);
 
     addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
   });
 }

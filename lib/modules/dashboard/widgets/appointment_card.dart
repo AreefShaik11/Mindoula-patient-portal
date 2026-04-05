@@ -4,59 +4,54 @@ import '../../../../core/theme/app_typography.dart';
 
 class AppointmentCard extends StatelessWidget {
   final String date;
-  final String time;
-  final String providerName;
-  final String specialty;
+  final String month;
+  final String title;
+  final VoidCallback onJoin;
 
   const AppointmentCard({
     super.key,
     required this.date,
-    required this.time,
-    required this.providerName,
-    required this.specialty,
+    required this.month,
+    required this.title,
+    required this.onJoin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      width: 653,
+      height: 104,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppColors.border),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            offset: const Offset(0, 4),
-            blurRadius: 12,
-          ),
-        ],
       ),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       child: Row(
         children: [
-          // Date Box (Figma Blue Box)
+          // Date box
           Container(
-            width: 80,
-            padding: const EdgeInsets.symmetric(vertical: 12),
+            width: 76,
+            height: 76,
             decoration: BoxDecoration(
               color: AppColors.dateBoxBackground,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  date.split(' ')[0], // Month
-                  style: AppTypography.bodySmall.copyWith(
-                    color: AppColors.dateBoxText,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  date.split(' ')[1], // Day
+                  date,
                   style: AppTypography.h3.copyWith(
                     color: AppColors.dateBoxText,
                     fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  month,
+                  style: AppTypography.bodySmall.copyWith(
+                    color: AppColors.dateBoxText,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
@@ -64,28 +59,42 @@ class AppointmentCard extends StatelessWidget {
           ),
           const SizedBox(width: 24),
           
-          // Details
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('$time - $providerName', style: AppTypography.h3),
+                const Text(
+                  'Upcoming appointment',
+                  style: TextStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 14,
+                  ),
+                ),
                 const SizedBox(height: 4),
-                Text(specialty, style: AppTypography.bodyMedium),
+                Text(
+                  title,
+                  style: AppTypography.contentStyle.copyWith(fontSize: 18),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ],
             ),
           ),
-          
-          // Action
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryBlue,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          const SizedBox(width: 16),
+          SizedBox(
+            width: 124,
+            height: 39,
+            child: ElevatedButton(
+              onPressed: onJoin,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primaryBlue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              child: const Text('Join Video'),
             ),
-            child: Text('Join Video', style: AppTypography.buttonLarge),
           ),
         ],
       ),

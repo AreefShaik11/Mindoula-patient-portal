@@ -14,18 +14,23 @@ class StatusPill extends StatelessWidget {
 
     switch (status) {
       case PrescriptionStatus.active:
-        bgColor = const Color(0xFFE8F5E9);
-        textColor = AppColors.success;
+        bgColor = AppColors.statusActiveBg;
+        textColor = AppColors.statusActiveText;
         label = 'Active';
         break;
-      case PrescriptionStatus.pending:
-        bgColor = const Color(0xFFFFF3E0);
-        textColor = AppColors.warning;
-        label = 'Pending';
+      case PrescriptionStatus.stopped:
+        bgColor = AppColors.statusStoppedBg;
+        textColor = AppColors.statusStoppedText;
+        label = 'Stopped';
+        break;
+      case PrescriptionStatus.onHold:
+        bgColor = AppColors.statusOnHoldBg;
+        textColor = AppColors.statusOnHoldText;
+        label = 'On Hold';
         break;
       case PrescriptionStatus.expired:
-        bgColor = const Color(0xFFFFEBEE);
-        textColor = AppColors.error;
+        bgColor = AppColors.statusExpiredBg;
+        textColor = AppColors.statusExpiredText;
         label = 'Expired';
         break;
     }
@@ -34,14 +39,14 @@ class StatusPill extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         color: bgColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(100),
       ),
       child: Text(
         label,
         style: TextStyle(
           color: textColor,
           fontSize: 12,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );

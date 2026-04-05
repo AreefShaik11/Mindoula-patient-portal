@@ -9,14 +9,22 @@ class AppLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: Row(
         children: [
           const AppSidebar(),
           Expanded(
-            child: Container(
-              color: AppColors.background,
-              padding: const EdgeInsets.all(40.0), // Spacing from Figma
-              child: child,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.only(
+                left: 40.0,
+                top: 74.0, // Header alignment from Figma
+                right: 40.0,
+                bottom: 40.0,
+              ),
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 1200),
+                child: child,
+              ),
             ),
           ),
         ],

@@ -1,24 +1,27 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../model/dashboard_state.dart';
 
 part 'dashboard_view_model.g.dart';
 
 @riverpod
 class DashboardViewModel extends _$DashboardViewModel {
   @override
-  Map<String, dynamic> build() {
-    return {
-      'userName': 'Jane',
-      'upcomingAppointment': {
-        'date': 'April 14',
-        'time': '10:00 AM',
-        'provider': 'Dr. Sarah Johnson',
-        'specialty': 'Primary Care',
-      },
-      'notifications': 3,
-    };
+  DashboardState build() {
+    return const DashboardState(
+      userName: 'Jane',
+      nextAppointmentType: 'Adult Psychiatry Case Management',
+      nextAppointmentDate: '14',
+      nextAppointmentMonth: 'April',
+      nextAppointmentTime: '10:00 AM',
+      nextAppointmentDoctor: 'Dr. Sarah Johnson',
+    );
   }
 
   void refresh() {
-    // Logic for refreshing data
+    state = state.copyWith(isLoading: true);
+    // Simulated refresh logic
+    Future.delayed(const Duration(seconds: 1), () {
+      state = state.copyWith(isLoading: false);
+    });
   }
 }
