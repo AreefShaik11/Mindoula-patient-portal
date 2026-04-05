@@ -24,6 +24,7 @@ import 'package:mindoula_patient_portal/modules/prescription/view/prescription_s
 import 'package:mindoula_patient_portal/modules/messages/view/message_center_screen.dart';
 import 'package:mindoula_patient_portal/modules/account/view/account_screen.dart';
 import 'package:mindoula_patient_portal/shared/widgets/sidebar/app_sidebar.dart';
+import 'package:mindoula_patient_portal/shared/layout/app_layout.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -120,6 +121,7 @@ void main() {
     testWidgets('Prescription UI', (tester) async { await pumpModule(tester, const PrescriptionScreen()); });
     testWidgets('Messages UI', (tester) async { await pumpModule(tester, const MessageCenterScreen()); });
     testWidgets('Sidebar Render', (tester) async { await pumpModule(tester, const AppSidebar()); });
+    testWidgets('Layout Render', (tester) async { await pumpModule(tester, const AppLayout(child: SizedBox(width: 100, height: 100))); });
   });
 }
 void _exerciseRouter(BuildContext context) {
