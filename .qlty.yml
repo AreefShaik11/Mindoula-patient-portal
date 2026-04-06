@@ -1,0 +1,15 @@
+version: 1
+
+project:
+  name: Mindoula-patient-portal
+  platform: flutter
+
+coverage:
+  path: coverage/lcov.info
+  precision: 2
+
+# Exclude generated code and tests from quality analysis
+exclude:
+  - "**/*.freezed.dart"
+  - "**/*.g.dart"
+  - "test/**"
