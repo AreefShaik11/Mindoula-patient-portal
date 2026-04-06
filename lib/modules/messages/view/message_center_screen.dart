@@ -6,130 +6,341 @@ import '../model/message_model.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 
-class MessageCenterScreen extends ConsumerWidget {
+class MessageCenterScreen extends ConsumerStatefulWidget {
   const MessageCenterScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MessageCenterScreen> createState() => _MessageCenterScreenState();
+}
+
+class _MessageCenterScreenState extends ConsumerState<MessageCenterScreen> {
+  bool _isChatOpenOnMobile = false;
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(messageViewModelProvider);
     final threads = state['threads'] as List<MessageThread>;
     final selectedId = state['selectedThreadId'] as String;
     final selectedThread = threads.firstWhere((t) => t.id == selectedId);
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Thread List
-        SizedBox(
-          width: 350,
-          child: ListView.separated(
-            itemCount: threads.length,
-            separatorBuilder: (context, index) => const Divider(),
-            itemBuilder: (context, index) {
-              final t = threads[index];
-              return ListTile(
-                selected: t.id == selectedId,
-                selectedTileColor: AppColors.messageBlue.withValues(alpha: 0.3),
-                title: Text(
-                  t.participantName,
-                  style: AppTypography.h3.copyWith(fontSize: 16),
-                ),
-                subtitle: Text(
-                  t.lastMessage,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                trailing: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      DateFormat('hh:mm').format(t.lastTimestamp),
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                    if (t.unreadCount > 0)
-                      Container(
-                        margin: const EdgeInsets.only(top: 4),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 6,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryBlue,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          '${t.unreadCount}',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-                onTap: () => ref
-                    .read(messageViewModelProvider.notifier)
-                    .selectThread(t.id),
-              );
-            },
-          ),
-        ),
-        const VerticalDivider(width: 1),
-        // Chat View
-        Expanded(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isMobile = constraints.maxWidth < 1024;
+
+        final threadListWidget = SizedBox(
+          width: isMobile ? double.infinity : 440,
           child: Column(
             children: [
-              // Header
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: AppColors.primaryBlue.withValues(
-                        alpha: 0.1,
-                      ),
-                      child: Text(selectedThread.participantName[0]),
-                    ),
-                    const SizedBox(width: 12),
                     Text(
-                      selectedThread.participantName,
-                      style: AppTypography.h3,
+                      'Messages',
+                      style: AppTypography.h3.copyWith(fontSize: 24),
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.search),
+                          onPressed: () {},
+                          color: AppColors.textPrimary,
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.filter_list),
+                          onPressed: () {},
+                          color: AppColors.textPrimary,
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-              const Divider(),
-              // Messages
+              const Divider(height: 1),
               Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.all(24),
-                  itemCount: selectedThread.messages.length,
+                child: ListView.separated(
+                  itemCount: threads.length,
+                  separatorBuilder: (context, index) => const Divider(height: 1),
                   itemBuilder: (context, index) {
-                    final message = selectedThread.messages[index];
-                    return _MessageBubble(message: message);
+                    final t = threads[index];
+                    final isSelected = t.id == selectedId;
+                    return Stack(
+                      children: [
+                        if (isSelected && !isMobile)
+                          Positioned(
+                            left: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Container(
+                              width: 6,
+                              color: AppColors.primaryBlue,
+                            ),
+                          ),
+                        ListTile(
+                          selected: isMobile ? false : isSelected,
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 16,
+                          ),
+                          title: Text(
+                            t.participantName,
+                            style: AppTypography.bodyLarge.copyWith(
+                              fontWeight:
+                                  isSelected ? FontWeight.w600 : FontWeight.w500,
+                            ),
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              t.lastMessage,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTypography.bodySmall.copyWith(
+                                color: AppColors.textSecondary,
+                              ),
+                            ),
+                          ),
+                          trailing: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                DateFormat('h:mm a').format(t.lastTimestamp),
+                                style: AppTypography.bodySmall.copyWith(
+                                  fontSize: 12,
+                                  color: AppColors.textSecondary,
+                                ),
+                              ),
+                              if (t.unreadCount > 0)
+                                Container(
+                                  margin: const EdgeInsets.only(top: 8),
+                                  width: 8,
+                                  height: 8,
+                                  decoration: const BoxDecoration(
+                                    color: AppColors.primaryBlue,
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                            ],
+                          ),
+                          onTap: () {
+                            ref
+                                .read(messageViewModelProvider.notifier)
+                                .selectThread(t.id);
+                            if (isMobile) {
+                              setState(() => _isChatOpenOnMobile = true);
+                            }
+                          },
+                        ),
+                      ],
+                    );
                   },
                 ),
               ),
-              // Input
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Type a message...',
-                    suffixIcon: IconButton(
-                      icon: const Icon(
-                        Icons.send_rounded,
-                        color: AppColors.primaryBlue,
-                      ),
-                      onPressed: () {},
+            ],
+          ),
+        );
+
+        final chatViewWidget = Column(
+          children: [
+            // Header
+            Container(
+              height: 74,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  if (isMobile)
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () => setState(() => _isChatOpenOnMobile = false),
+                      padding: const EdgeInsets.only(right: 16),
+                    ),
+                  Expanded(
+                    child: Text(
+                      selectedThread.participantName,
+                      style: AppTypography.h3,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  if (!isMobile)
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primaryBlue,
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 16,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text('Request Appointment',
+                          style: TextStyle(fontWeight: FontWeight.w600)),
+                    ),
+                ],
+              ),
+            ),
+            const Divider(height: 1),
+            // Messages
+            Expanded(
+              child: Container(
+                color: AppColors.chatBackground,
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(32),
+                  itemCount: selectedThread.messages.length,
+                  itemBuilder: (context, index) {
+                    final message = selectedThread.messages[index];
+                    if (message.senderType == MessageSenderType.system) {
+                      return _NotificationCard(message: message);
+                    }
+                    return _MessageBubble(
+                      message: message,
+                      participantName: selectedThread.participantName,
+                    );
+                  },
                 ),
               ),
-            ],
+            ),
+            // Input
+            const Divider(height: 1),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 16 : 32,
+                vertical: 24,
+              ),
+              child: Row(
+                children: [
+                  if (!isMobile)
+                    TextButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.add, size: 20),
+                      label: const Text('Attach file'),
+                      style: TextButton.styleFrom(
+                        foregroundColor: AppColors.primaryBlue,
+                        textStyle: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                    )
+                  else
+                    IconButton(
+                      icon: const Icon(Icons.add),
+                      color: AppColors.primaryBlue,
+                      onPressed: () {},
+                    ),
+                  SizedBox(width: isMobile ? 8 : 24),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: AppColors.border),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Message Here',
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: isMobile ? 8 : 16),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primaryBlue,
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: isMobile ? 16 : 32,
+                        vertical: 16,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text('Send',
+                        style: TextStyle(fontWeight: FontWeight.w600)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+
+        if (isMobile) {
+          if (_isChatOpenOnMobile) {
+            return chatViewWidget;
+          } else {
+            return threadListWidget;
+          }
+        }
+
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            threadListWidget,
+            const VerticalDivider(width: 1),
+            Expanded(child: chatViewWidget),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _MessageBubble extends StatelessWidget {
+  final Message message;
+  final String participantName;
+  const _MessageBubble({
+    required this.message,
+    required this.participantName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isUser = message.senderType == MessageSenderType.user;
+    return Column(
+      crossAxisAlignment:
+          isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Text(
+            isUser ? 'You' : participantName,
+            style: AppTypography.bodySmall.copyWith(
+              color: AppColors.senderName,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(bottom: 6),
+          constraints: const BoxConstraints(maxWidth: 600),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isUser ? AppColors.chatBubbleSent : AppColors.chatBubbleReceived,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Text(
+            message.content,
+            style: AppTypography.bodyLarge.copyWith(
+              color: AppColors.textPrimary,
+              height: 1.5,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 24.0),
+          child: Text(
+            DateFormat('h:mm a').format(message.timestamp),
+            style: AppTypography.bodySmall.copyWith(
+              color: AppColors.textSecondary,
+              fontSize: 12,
+            ),
           ),
         ),
       ],
@@ -137,59 +348,127 @@ class MessageCenterScreen extends ConsumerWidget {
   }
 }
 
-class _MessageBubble extends StatelessWidget {
+class _NotificationCard extends StatelessWidget {
   final Message message;
-  const _MessageBubble({required this.message});
+  const _NotificationCard({required this.message});
 
   @override
   Widget build(BuildContext context) {
-    final isUser = message.senderType == MessageSenderType.user;
-    return Align(
-      alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        constraints: const BoxConstraints(maxWidth: 500),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: isUser ? AppColors.primaryBlue : AppColors.messageBlue,
-          borderRadius: BorderRadius.circular(16).copyWith(
-            topLeft: isUser ? const Radius.circular(16) : Radius.zero,
-            bottomRight: isUser ? Radius.zero : const Radius.circular(16),
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    final isAppointment = message.type == MessageType.appointmentConfirmation;
+    final accentColor =
+        isAppointment ? AppColors.chatAccentOrange : AppColors.chatAccentBlue;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24),
+      decoration: BoxDecoration(
+        color: AppColors.notificationCardBg,
+        border: Border.all(color: Colors.black, width: 1),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: IntrinsicHeight(
+        child: Row(
           children: [
-            Text(
-              message.content,
-              style: TextStyle(
-                color: isUser ? Colors.white : AppColors.textPrimary,
-                fontSize: 16,
-              ),
-            ),
-            if (message.type == MessageType.appointmentRequest)
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: AppColors.primaryBlue,
-                  ),
-                  child: Text(message.actionLabel ?? 'Request'),
+            Container(
+              width: 8,
+              decoration: BoxDecoration(
+                color: accentColor,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(11),
+                  bottomLeft: Radius.circular(11),
                 ),
               ),
-            const SizedBox(height: 4),
-            Text(
-              DateFormat('hh:mm').format(message.timestamp),
-              style: TextStyle(
-                color: (isUser ? Colors.white : AppColors.textSecondary)
-                    .withValues(alpha: 0.7),
-                fontSize: 10,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      message.content,
+                      style: AppTypography.bodyLarge.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    if (isAppointment) ...[
+                      const SizedBox(height: 16),
+                      _NotificationDetail(
+                        label: 'Date',
+                        value: 'Thursday, April 3, 2026',
+                      ),
+                      _NotificationDetail(
+                        label: 'Time',
+                        value: '10:00 - 10:30 AM ET',
+                      ),
+                      _NotificationDetail(
+                        label: 'Type',
+                        value: 'Video visit',
+                      ),
+                    ],
+                    if (message.type == MessageType.labResults) ...[
+                      const SizedBox(height: 16),
+                      Text(
+                        'Results from March 22 visit are now available in your portal. Your provider will review these with you at your next appointment.',
+                        style: AppTypography.bodyLarge.copyWith(height: 1.5),
+                      ),
+                    ],
+                    if (message.actionLabel != null) ...[
+                      const SizedBox(height: 24),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: AppColors.primaryBlue,
+                            side: const BorderSide(color: AppColors.primaryBlue),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 24,
+                              vertical: 12,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: Text(
+                            message.actionLabel!,
+                            style: const TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _NotificationDetail extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _NotificationDetail({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6.0),
+      child: Row(
+        children: [
+          Text(
+            '$label: ',
+            style: AppTypography.bodyLarge.copyWith(
+              fontWeight: FontWeight.w600,
+              color: AppColors.textPrimary,
+            ),
+          ),
+          Text(value, style: AppTypography.bodyLarge),
+        ],
       ),
     );
   }

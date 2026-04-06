@@ -8,9 +8,11 @@ enum MessageSenderType { user, provider, system }
 enum MessageType {
   text,
   appointmentRequest,
+  appointmentConfirmation,
   refillRequest,
   documentReview,
   prescriptionUpdate,
+  labResults,
 }
 
 @freezed

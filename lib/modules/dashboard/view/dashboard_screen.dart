@@ -37,8 +37,8 @@ class DashboardScreen extends ConsumerWidget {
         const SizedBox(height: 24),
         Text('How can we help you today?', style: AppTypography.sectionHeader),
         const SizedBox(height: 16),
-        SizedBox(
-          width: 653,
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 653),
           child: Column(
             children: [
               QuickActionCard(

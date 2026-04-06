@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../viewmodel/prescription_view_model.dart';
 import '../model/prescription.dart';
-import '../widgets/status_pill.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../shared/widgets/cards/portal_list_card.dart';
 
 class PrescriptionScreen extends ConsumerWidget {
   const PrescriptionScreen({super.key});
@@ -16,39 +16,9 @@ class PrescriptionScreen extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Prescriptions', style: AppTypography.h2),
+        Text('Your Prescriptions', style: AppTypography.pageTitle),
         const SizedBox(height: 32),
-        _PrescriptionSection(
-          title: 'Active prescriptions',
-          items: prescriptions
-              .where((p) => p.status == PrescriptionStatus.active)
-              .toList(),
-        ),
-        const SizedBox(height: 48),
-        _PrescriptionSection(
-          title: 'Refill requests & history',
-          items: prescriptions
-              .where((p) => p.status != PrescriptionStatus.active)
-              .toList(),
-        ),
-      ],
-    );
-  }
-}
-
-class _PrescriptionSection extends StatelessWidget {
-  final String title;
-  final List<Prescription> items;
-  const _PrescriptionSection({required this.title, required this.items});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title, style: AppTypography.h3),
-        const SizedBox(height: 16),
-        ...items.map((p) => _PrescriptionCard(prescription: p)),
+        ...prescriptions.map((p) => _PrescriptionCard(prescription: p)),
       ],
     );
   }
@@ -60,20 +30,14 @@ class _PrescriptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 1091,
-      height: 104,
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.border),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Row(
+    return PortalListCard(
+      child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        runSpacing: 16,
         children: [
-          Expanded(
-            flex: 3,
+          SizedBox(
+            width: 300,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -82,9 +46,27 @@ class _PrescriptionCard extends StatelessWidget {
                   prescription.drugName,
                   style: AppTypography.contentStyle.copyWith(fontSize: 18),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 8),
+                Container(
+                  width: 164,
+                  height: 26,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD9ECCD),
+                    borderRadius: BorderRadius.circular(80),
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    '${prescription.refillsRemaining} refills remaining',
+                    style: const TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
                 Text(
-                  '${prescription.dosage} - ${prescription.frequency}',
+                  'Dosage: ${prescription.dosage} Frequency: ${prescription.frequency}',
                   style: AppTypography.bodyMedium.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -92,33 +74,41 @@ class _PrescriptionCard extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            flex: 2,
-            child: Center(child: StatusPill(status: prescription.status)),
-          ),
-          Expanded(
-            flex: 2,
-            child: Text(
-              '${prescription.refillsRemaining} refills left',
-              style: AppTypography.bodySmall,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          SizedBox(
-            width: 133,
-            height: 40,
-            child: ElevatedButton(
-              onPressed: prescription.refillsRemaining > 0 ? () {} : null,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryBlue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              child: const Text('Request Refill'),
-            ),
+          // Action Buttons from Figma (3 Inactive Buttons placeholders)
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              _buildFigmaButton('Inactive Button'),
+              _buildFigmaButton('Inactive Button'),
+              _buildFigmaButton('Inactive Button'),
+            ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildFigmaButton(String label) {
+    return SizedBox(
+      width: 120,
+      height: 40,
+      child: OutlinedButton(
+        onPressed: () {},
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: AppColors.border),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: AppColors.textSecondary,
+            fontSize: 12,
+          ),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }

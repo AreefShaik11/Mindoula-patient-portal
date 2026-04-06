@@ -37,14 +37,14 @@ class AppTypography {
   );
 
   static TextStyle get h3 => _style(
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.w500,
     color: AppColors.textPrimary,
   );
 
   static TextStyle get bodyLarge => _style(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
     color: AppColors.textPrimary,
   );
 
@@ -100,6 +100,24 @@ class AppTypography {
   static TextStyle get notificationText => _style(
     fontSize: 20,
     fontWeight: FontWeight.w500,
+    color: AppColors.textPrimary,
+  );
+
+  static TextStyle get pageTitle => GoogleFonts.roboto(
+    fontSize: 54,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textPrimary,
+  );
+
+  static TextStyle get tabBarActive => _style(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textPrimary,
+  );
+
+  static TextStyle get tabBarInactive => _style(
+    fontSize: 20,
+    fontWeight: FontWeight.w300,
     color: AppColors.textPrimary,
   );
 }

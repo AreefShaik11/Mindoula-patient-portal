@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
+import '../../../../shared/widgets/cards/portal_list_card.dart';
 
 class ProfileItem extends StatelessWidget {
   final String label;
@@ -18,16 +19,16 @@ class ProfileItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+    return PortalListCard(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('$label:', style: AppTypography.labelStyle),
+                Text(label, style: AppTypography.labelStyle),
                 const SizedBox(height: 4),
                 Text(value, style: AppTypography.contentStyle),
               ],
@@ -60,3 +61,4 @@ class ProfileItem extends StatelessWidget {
     );
   }
 }
+

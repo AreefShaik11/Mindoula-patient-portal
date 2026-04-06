@@ -19,8 +19,8 @@ class AppointmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 653,
-      height: 104,
+      width: double.infinity,
+      constraints: const BoxConstraints(maxWidth: 653, minHeight: 104),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/theme/app_colors.dart';
 import '../widgets/sidebar/app_sidebar.dart';
 
@@ -8,27 +9,59 @@ class AppLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Row(
-        children: [
-          const AppSidebar(),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.only(
-                left: 40.0,
-                top: 74.0, // Header alignment from Figma
-                right: 40.0,
-                bottom: 40.0,
-              ),
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 1200),
-                child: child,
-              ),
+    String location;
+    try {
+      location = GoRouterState.of(context).uri.path;
+    } catch (_) {
+      location = '/';
+    }
+
+    final isFullScreen = location == '/messages';
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isDesktop = constraints.maxWidth >= 1024;
+        final padding = isDesktop
+            ? const EdgeInsets.only(left: 24.0, top: 74.0, right: 24.0, bottom: 24.0)
+            : const EdgeInsets.all(16.0);
+
+        final content = isFullScreen
+            ? child
+            : SingleChildScrollView(
+                padding: padding,
+                child: Center(
+                  child: Container(
+                    constraints: const BoxConstraints(maxWidth: 1214),
+                    child: child,
+                  ),
+                ),
+              );
+
+        if (isDesktop) {
+          return Scaffold(
+            backgroundColor: AppColors.background,
+            body: Row(
+              children: [
+                const AppSidebar(),
+                Expanded(child: content),
+              ],
             ),
+          );
+        }
+
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          appBar: AppBar(
+            backgroundColor: AppColors.sidebarHeader,
+            title: const Text('Member Portal', style: TextStyle(color: Colors.white)),
+            iconTheme: const IconThemeData(color: Colors.white),
           ),
-        ],
-      ),
+          drawer: const Drawer(
+            child: AppSidebar(),
+          ),
+          body: content,
+        );
+      },
     );
   }
 }
