@@ -96,23 +96,26 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
         break;
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Account', style: AppTypography.pageTitle),
-        const SizedBox(height: 32),
-        PortalTabBar(
-          tabs: _tabs,
-          selectedIndex: _selectedTabIndex,
-          onTabSelected: (index) {
-            setState(() {
-              _selectedTabIndex = index;
-            });
-          },
-        ),
-        const SizedBox(height: 32),
-        content,
-      ],
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(vertical: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Account', style: AppTypography.pageTitle),
+          const SizedBox(height: 32),
+          PortalTabBar(
+            tabs: _tabs,
+            selectedIndex: _selectedTabIndex,
+            onTabSelected: (index) {
+              setState(() {
+                _selectedTabIndex = index;
+              });
+            },
+          ),
+          const SizedBox(height: 32),
+          content,
+        ],
+      ),
     );
   }
 
@@ -140,7 +143,7 @@ class _NotificationToggleItem extends StatelessWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeTrackColor: AppColors.primaryBlue.withOpacity(0.5),
+            activeTrackColor: AppColors.primaryBlue.withValues(alpha: 0.5),
             activeThumbColor: AppColors.primaryBlue,
           ),
         ],

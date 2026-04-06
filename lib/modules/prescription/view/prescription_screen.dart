@@ -78,18 +78,23 @@ class _PrescriptionCard extends StatelessWidget {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: [
-              _buildFigmaButton('Inactive Button'),
-              _buildFigmaButton('Inactive Button'),
-              _buildFigmaButton('Inactive Button'),
+            children: const [
+              _FigmaInactiveButton(),
+              _FigmaInactiveButton(),
+              _FigmaInactiveButton(),
             ],
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildFigmaButton(String label) {
+class _FigmaInactiveButton extends StatelessWidget {
+  const _FigmaInactiveButton();
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       width: 120,
       height: 40,
@@ -101,9 +106,9 @@ class _PrescriptionCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        child: Text(
-          label,
-          style: const TextStyle(
+        child: const Text(
+          'Inactive Button',
+          style: TextStyle(
             color: AppColors.textSecondary,
             fontSize: 12,
           ),
@@ -113,3 +118,4 @@ class _PrescriptionCard extends StatelessWidget {
     );
   }
 }
+
