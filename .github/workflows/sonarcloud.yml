@@ -9,6 +9,9 @@ jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,6 +30,12 @@ jobs:
 
       - name: Run tests with coverage
         run: flutter test --coverage
+
+      - name: Upload coverage to Qlty
+        uses: qltysh/qlty-action/coverage@v2
+        with:
+          files: coverage/lcov.info
+          oidc: true
 
       - name: Normalize coverage paths to absolute
         run: |
