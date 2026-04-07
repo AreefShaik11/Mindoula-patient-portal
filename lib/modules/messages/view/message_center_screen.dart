@@ -409,7 +409,6 @@ class _ChatInput extends StatelessWidget {
     );
   }
 }
-}
 
 class _MessageBubble extends StatelessWidget {
   final Message message;
