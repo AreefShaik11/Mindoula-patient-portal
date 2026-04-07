@@ -75,10 +75,10 @@ class _PrescriptionCard extends StatelessWidget {
             ),
           ),
           // Action Buttons from Figma (3 Inactive Buttons placeholders)
-          Wrap(
+          const Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: const [
+            children: [
               _FigmaInactiveButton(),
               _FigmaInactiveButton(),
               _FigmaInactiveButton(),
