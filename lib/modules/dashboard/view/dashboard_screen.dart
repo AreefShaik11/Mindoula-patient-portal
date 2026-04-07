@@ -42,33 +42,30 @@ class DashboardScreen extends ConsumerWidget {
           style: AppTypography.sectionHeader,
         ),
         const SizedBox(height: 16),
-        SizedBox(
-          width: 653,
-          child: Column(
-            children: [
-              _QuickActionCard(
-                title: 'View 3 new messages',
-                onTap: () => context.go('/messages'),
-                isNotification: true,
-              ),
-              const SizedBox(height: 8),
-              _QuickActionCard(
-                title: 'Request an appointment',
-                onTap: () => context.go('/appointments'),
-              ),
-              const SizedBox(height: 8),
-              _QuickActionCard(
-                title: 'Request a prescription refill',
-                onTap: () => context.go('/prescriptions'),
-              ),
-              const SizedBox(height: 8),
-              _QuickActionCard(
-                title: 'Send a message to my care team',
-                onTap: () => context.go('/messages'),
-              ),
-              const SizedBox(height: 8),
-            ],
-          ),
+        Column(
+          children: [
+            _QuickActionCard(
+              title: 'View 3 new messages',
+              onTap: () => context.go('/messages'),
+              isNotification: true,
+            ),
+            const SizedBox(height: 8),
+            _QuickActionCard(
+              title: 'Request an appointment',
+              onTap: () => context.go('/appointments'),
+            ),
+            const SizedBox(height: 8),
+            _QuickActionCard(
+              title: 'Request a prescription refill',
+              onTap: () => context.go('/prescriptions'),
+            ),
+            const SizedBox(height: 8),
+            _QuickActionCard(
+              title: 'Send a message to my care team',
+              onTap: () => context.go('/messages'),
+            ),
+            const SizedBox(height: 8),
+          ],
         ),
       ],
     );
@@ -100,7 +97,7 @@ class _QuickActionCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 653,
-        height: 104,
+        constraints: const BoxConstraints(minHeight: 104),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),

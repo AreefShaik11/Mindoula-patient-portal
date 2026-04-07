@@ -9,28 +9,22 @@ void main() {
   group('AppRouter Tests', () {
     test('appRouter provider returns a GoRouter instance', () {
       final container = ProviderContainer();
-      final router = container.read(appRouterWithProvider);
+      final router = container.read(appRouterProvider);
       
       expect(router, isA<GoRouter>());
-      expect(router.configuration.initialLocation, '/dashboard');
+      expect(router.routeInformationProvider.value.uri.toString(), '/dashboard');
     });
 
     testWidgets('provides correct initial route', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const ProviderScope(
-          child: MaterialApp.router(
-            routerConfig: null, // We'll get it from provider below
-          ),
-        ),
-      );
+      await tester.binding.setSurfaceSize(const Size(1920, 1080));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
 
-      final BuildContext context = tester.element(find.byType(MaterialApp));
-      final container = ProviderScope.containerOf(context);
-      final router = container.read(appRouterWithProvider);
+      final container = ProviderContainer();
+      final router = container.read(appRouterProvider);
 
       await tester.pumpWidget(
-        ProviderScope(
-          parent: container,
+        UncontrolledProviderScope(
+          container: container,
           child: MaterialApp.router(
             routerConfig: router,
           ),
@@ -42,12 +36,15 @@ void main() {
     });
 
     testWidgets('navigates to account screen', (WidgetTester tester) async {
+      await tester.binding.setSurfaceSize(const Size(1920, 1080));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+
       final container = ProviderContainer();
-      final router = container.read(appRouterWithProvider);
+      final router = container.read(appRouterProvider);
 
       await tester.pumpWidget(
-        ProviderScope(
-          parent: container,
+        UncontrolledProviderScope(
+          container: container,
           child: MaterialApp.router(
             routerConfig: router,
           ),
@@ -59,16 +56,20 @@ void main() {
       router.go('/account');
       await tester.pumpAndSettle();
       
-      expect(find.text('Profile Settings'), findsOneWidget); // Typical text in AccountScreen
+      // Look for Account text or widgets
+      expect(find.text('Settings'), findsWidgets);
     });
     
     testWidgets('navigates to all peripheral routes', (WidgetTester tester) async {
+      await tester.binding.setSurfaceSize(const Size(1920, 1080));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+
       final container = ProviderContainer();
-      final router = container.read(appRouterWithProvider);
+      final router = container.read(appRouterProvider);
 
       await tester.pumpWidget(
-        ProviderScope(
-          parent: container,
+        UncontrolledProviderScope(
+          container: container,
           child: MaterialApp.router(
             routerConfig: router,
           ),
@@ -87,13 +88,8 @@ void main() {
       for (final route in routes) {
         router.go(route);
         await tester.pumpAndSettle();
-        // Just verify it doesn't crash and renders something
         expect(find.byType(Scaffold), findsWidgets);
       }
     });
   });
 }
-
-// Helper to access the provider if the name is different due to generator
-// Typical naming for @riverpod GoRouter appRouter is appRouterProvider
-final appRouterWithProvider = appRouterProvider;

@@ -35,7 +35,7 @@ GoRouter appRouter(Ref ref) {
           ),
           GoRoute(
             path: '/appointments',
-            builder: (context, state) => const Scaffold(body: Center(child: Text('Appointments'))),
+            builder: (context, state) => const Center(child: Text('Appointments')),
           ),
           GoRoute(
             path: '/prescriptions',
@@ -43,19 +43,19 @@ GoRouter appRouter(Ref ref) {
           ),
           GoRoute(
             path: '/lab-results',
-            builder: (context, state) => const Scaffold(body: Center(child: Text('Lab Results'))),
+            builder: (context, state) => const Center(child: Text('Lab Results')),
           ),
           GoRoute(
             path: '/questionnaires',
-            builder: (context, state) => const Scaffold(body: Center(child: Text('Questionnaires'))),
+            builder: (context, state) => const Center(child: Text('Questionnaires')),
           ),
           GoRoute(
             path: '/documents',
-            builder: (context, state) => const Scaffold(body: Center(child: Text('Documents'))),
+            builder: (context, state) => const Center(child: Text('Documents')),
           ),
           GoRoute(
             path: '/insurance',
-            builder: (context, state) => const Scaffold(body: Center(child: Text('Insurance'))),
+            builder: (context, state) => const Center(child: Text('Insurance')),
           ),
           GoRoute(
             path: '/billing',
@@ -63,7 +63,7 @@ GoRouter appRouter(Ref ref) {
           ),
           GoRoute(
             path: '/logout',
-            builder: (context, state) => const Scaffold(body: Center(child: Text('Log Out...'))),
+            builder: (context, state) => const Center(child: Text('Log Out...')),
           ),
         ],
       ),

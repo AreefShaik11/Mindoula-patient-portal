@@ -34,6 +34,7 @@ class AccountViewModel extends _$AccountViewModel {
     state = state.copyWith(isLoading: true);
     // Simulate API call
     await Future.delayed(const Duration(seconds: 1));
+    if (!ref.mounted) return;
     state = state.copyWith(isLoading: false);
   }
 }

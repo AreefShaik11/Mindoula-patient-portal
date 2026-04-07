@@ -20,7 +20,7 @@ class AppointmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 653,
-      height: 104,
+      constraints: const BoxConstraints(minHeight: 104),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
@@ -80,8 +80,6 @@ class AppointmentCard extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 124,
-            height: 39,
             child: ElevatedButton(
               onPressed: onJoin,
               style: ElevatedButton.styleFrom(
