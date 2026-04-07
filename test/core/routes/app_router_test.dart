@@ -16,8 +16,9 @@ void main() {
     });
 
     testWidgets('provides correct initial route', (WidgetTester tester) async {
-      await tester.binding.setSurfaceSize(const Size(1920, 1080));
-      addTearDown(() => tester.binding.setSurfaceSize(null));
+      tester.view.physicalSize = const Size(1920, 1080);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(() => tester.view.resetPhysicalSize());
 
       final container = ProviderContainer();
       final router = container.read(appRouterProvider);
@@ -31,13 +32,15 @@ void main() {
         ),
       );
 
+      await tester.pump();
       await tester.pumpAndSettle();
       expect(find.byType(DashboardScreen), findsOneWidget);
     });
 
     testWidgets('navigates to account screen', (WidgetTester tester) async {
-      await tester.binding.setSurfaceSize(const Size(1920, 1080));
-      addTearDown(() => tester.binding.setSurfaceSize(null));
+      tester.view.physicalSize = const Size(1920, 1080);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(() => tester.view.resetPhysicalSize());
 
       final container = ProviderContainer();
       final router = container.read(appRouterProvider);
@@ -51,9 +54,11 @@ void main() {
         ),
       );
 
+      await tester.pump();
       await tester.pumpAndSettle();
       
       router.go('/account');
+      await tester.pump();
       await tester.pumpAndSettle();
       
       // Look for Account text or widgets
@@ -61,8 +66,9 @@ void main() {
     });
     
     testWidgets('navigates to all peripheral routes', (WidgetTester tester) async {
-      await tester.binding.setSurfaceSize(const Size(1920, 1080));
-      addTearDown(() => tester.binding.setSurfaceSize(null));
+      tester.view.physicalSize = const Size(1920, 1080);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(() => tester.view.resetPhysicalSize());
 
       final container = ProviderContainer();
       final router = container.read(appRouterProvider);
@@ -75,6 +81,9 @@ void main() {
           ),
         ),
       );
+
+      await tester.pump();
+      await tester.pumpAndSettle();
 
       final routes = [
         '/appointments',
@@ -87,6 +96,7 @@ void main() {
 
       for (final route in routes) {
         router.go(route);
+        await tester.pump();
         await tester.pumpAndSettle();
         expect(find.byType(Scaffold), findsWidgets);
       }

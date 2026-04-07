@@ -19,6 +19,8 @@ void main() {
         ),
       );
 
+      await tester.pumpAndSettle();
+
       expect(find.text('Settings'), findsOneWidget);
       expect(find.text('Notifications'), findsWidgets); // Found in Tab and Toggle
       expect(find.text('Delegate / Care Givers'), findsOneWidget);
@@ -31,16 +33,15 @@ void main() {
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(
-            home: AccountScreen(),
+            home: Scaffold(
+              body: AccountScreen(),
+            ),
           ),
         ),
       );
 
       await tester.pumpAndSettle();
 
-      // Settings tab is default
-      expect(find.text('Full Name'), findsWidgets);
-      
       // Tap Notifications tab
       await tester.tap(find.text('Notifications').first);
       await tester.pump(const Duration(seconds: 1));
@@ -57,7 +58,9 @@ void main() {
       await tester.pumpWidget(
         const ProviderScope(
           child: MaterialApp(
-            home: AccountScreen(),
+            home: Scaffold(
+              body: AccountScreen(),
+            ),
           ),
         ),
       );

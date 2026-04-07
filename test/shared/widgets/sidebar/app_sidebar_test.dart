@@ -56,9 +56,8 @@ void main() {
       await tester.tap(find.text('Messages'));
       await tester.pumpAndSettle();
 
-      // Check if current location updated (implicitly via build)
-      // We can check if Messages is now "selected" (bold/colored)
-      // but simpler to check if the tap didn't crash and we are on the message route
+      // Check if navigation didn't crash
+      expect(find.byType(AppSidebar), findsOneWidget);
     });
   });
 }
