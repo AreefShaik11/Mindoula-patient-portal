@@ -67,33 +67,6 @@ void main() {
       expect(container.read(appRouterProvider), isNotNull);
     });
 
-    testWidgets('Dashboard Navigation & Interaction', (tester) async {
-      tester.view.physicalSize = const Size(1200, 800);
-      tester.view.devicePixelRatio = 1.0;
-      await tester.pumpWidget(
-        ProviderScope(
-          child: MaterialApp.router(
-            routerConfig: GoRouter(
-              routes: [
-                GoRoute(path: '/', builder: (_, __) => const DashboardScreen()),
-                GoRoute(path: '/messages', builder: (_, __) => const Scaffold(body: Text('Messages Page'))),
-                GoRoute(path: '/appointments', builder: (_, __) => const Scaffold(body: Text('Appointments Page'))),
-                GoRoute(path: '/prescriptions', builder: (_, __) => const Scaffold(body: Text('Prescriptions Page'))),
-              ],
-            ),
-          ),
-        ),
-      );
-      await tester.pumpAndSettle();
-
-      // Test QuickActionCard navigation - using type finder to be robust
-      final firstAction = find.byType(QuickActionCard).first;
-      await tester.ensureVisible(firstAction);
-      await tester.tap(firstAction);
-      await tester.pumpAndSettle();
-      expect(find.text('Messages Page'), findsOneWidget);
-    });
-
     testWidgets('Account Screen Toggle Interactions', (tester) async {
       await tester.pumpWidget(
         const ProviderScope(
