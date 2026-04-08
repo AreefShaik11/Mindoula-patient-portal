@@ -103,7 +103,7 @@ class AppTypography {
     color: AppColors.textPrimary,
   );
 
-  static TextStyle get pageTitle => GoogleFonts.roboto(
+  static TextStyle get pageTitle => _style(
     fontSize: 54,
     fontWeight: FontWeight.w400,
     color: AppColors.textPrimary,

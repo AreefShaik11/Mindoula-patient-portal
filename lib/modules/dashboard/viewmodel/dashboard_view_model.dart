@@ -18,10 +18,7 @@ class DashboardViewModel extends _$DashboardViewModel {
   }
 
   void refresh() {
-    state = state.copyWith(isLoading: true);
-    // Simulated refresh logic
-    Future.delayed(const Duration(seconds: 1), () {
-      state = state.copyWith(isLoading: false);
-    });
+    // Immediate refresh for design-only testing
+    state = state.copyWith(isLoading: false);
   }
 }
