@@ -13,13 +13,19 @@ class PrescriptionScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final prescriptions = ref.watch(prescriptionViewModelProvider);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Your Prescriptions', style: AppTypography.pageTitle),
-        const SizedBox(height: 32),
-        ...prescriptions.map((p) => _PrescriptionCard(prescription: p)),
-      ],
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(vertical: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Your Prescriptions', style: AppTypography.pageTitle),
+          const SizedBox(height: 32),
+          ...prescriptions.map((p) => Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: _PrescriptionCard(prescription: p),
+          )),
+        ],
+      ),
     );
   }
 }
@@ -31,58 +37,124 @@ class _PrescriptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PortalListCard(
-      child: Wrap(
-        alignment: WrapAlignment.spaceBetween,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        runSpacing: 16,
-        children: [
-          SizedBox(
-            width: 300,
-            child: Column(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final isMobile = constraints.maxWidth < 700;
+          
+          if (isMobile) {
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  prescription.drugName,
-                  style: AppTypography.contentStyle.copyWith(fontSize: 18),
+                _HeaderSection(prescription: prescription),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: Divider(color: AppColors.divider),
                 ),
-                const SizedBox(height: 8),
-                Container(
-                  width: 164,
-                  height: 26,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFD9ECCD),
-                    borderRadius: BorderRadius.circular(80),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    '${prescription.refillsRemaining} refills remaining',
-                    style: const TextStyle(
-                      color: AppColors.textPrimary,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                _DetailsSection(prescription: prescription),
+                const SizedBox(height: 24),
+                const _ActionSection(),
+              ],
+            );
+          }
+
+          return IntrinsicHeight(
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: _HeaderSection(prescription: prescription),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  'Dosage: ${prescription.dosage} Frequency: ${prescription.frequency}',
-                  style: AppTypography.bodyMedium.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
+                const VerticalDivider(
+                  color: AppColors.divider,
+                  thickness: 1,
+                  width: 64,
                 ),
+                Expanded(
+                  flex: 2,
+                  child: _DetailsSection(prescription: prescription),
+                ),
+                const SizedBox(width: 32),
+                const _ActionSection(),
               ],
             ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _HeaderSection extends StatelessWidget {
+  final Prescription prescription;
+  const _HeaderSection({required this.prescription});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          prescription.drugName,
+          style: AppTypography.contentStyle.copyWith(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
           ),
-          // Action Buttons from Figma (3 Inactive Buttons placeholders)
-          const Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              _FigmaInactiveButton(),
-              _FigmaInactiveButton(),
-              _FigmaInactiveButton(),
-            ],
+        ),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          decoration: BoxDecoration(
+            color: const Color(0xFFD9ECCD),
+            borderRadius: BorderRadius.circular(80),
+          ),
+          child: Text(
+            '${prescription.refillsRemaining} refills remaining',
+            style: const TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _DetailsSection extends StatelessWidget {
+  final Prescription prescription;
+  const _DetailsSection({required this.prescription});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _DetailRow(label: 'Dosage', value: prescription.dosage),
+        const SizedBox(height: 4),
+        _DetailRow(label: 'Frequency', value: prescription.frequency),
+      ],
+    );
+  }
+}
+
+class _DetailRow extends StatelessWidget {
+  final String label;
+  final String value;
+  const _DetailRow({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        style: AppTypography.bodySmall.copyWith(color: AppColors.textSecondary),
+        children: [
+          TextSpan(text: '$label: '),
+          TextSpan(
+            text: value,
+            style: const TextStyle(color: AppColors.textPrimary),
           ),
         ],
       ),
@@ -90,32 +162,53 @@ class _PrescriptionCard extends StatelessWidget {
   }
 }
 
-class _FigmaInactiveButton extends StatelessWidget {
-  const _FigmaInactiveButton();
+class _ActionSection extends StatelessWidget {
+  const _ActionSection();
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 120,
-      height: 40,
-      child: OutlinedButton(
-        onPressed: () {},
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: AppColors.border),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        OutlinedButton(
+          onPressed: () {},
+          style: OutlinedButton.styleFrom(
+            side: const BorderSide(color: AppColors.primaryBlue),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          ),
+          child: const Text(
+            'View Details',
+            style: TextStyle(
+              color: AppColors.primaryBlue,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
-        child: const Text(
-          'Inactive Button',
-          style: TextStyle(
-            color: AppColors.textSecondary,
-            fontSize: 12,
+        const SizedBox(width: 12),
+        ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primaryBlue,
+            foregroundColor: AppColors.textWhite,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           ),
-          textAlign: TextAlign.center,
+          child: const Text(
+            'Request Refill',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
-
