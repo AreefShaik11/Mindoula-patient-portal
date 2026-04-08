@@ -17,19 +17,20 @@ void main() {
 
     test('should have initial list of mock prescriptions', () {
       final state = container.read(prescriptionViewModelProvider);
-      expect(state.length, 4);
-      expect(state[0].drugName, 'Lisinopril');
+      expect(state.length, 2);
+      expect(state[0].drugName, 'Sertraline');
+      expect(state[1].drugName, 'Lorazepam');
     });
 
     test('requestRefill should update prescription status to onHold', () {
       final viewModel = container.read(prescriptionViewModelProvider.notifier);
       
-      // Before: Lisinopril is 'active'
+      // Before: Sertraline is 'active'
       expect(container.read(prescriptionViewModelProvider)[0].status, PrescriptionStatus.active);
       
       viewModel.requestRefill('1');
       
-      // After: Lisinopril should be 'onHold'
+      // After: Sertraline should be 'onHold'
       expect(container.read(prescriptionViewModelProvider)[0].status, PrescriptionStatus.onHold);
     });
   });
