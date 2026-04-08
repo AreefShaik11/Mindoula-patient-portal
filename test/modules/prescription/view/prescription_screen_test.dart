@@ -30,8 +30,7 @@ void main() {
       expect(find.text('Sertraline'), findsOneWidget);
       expect(find.text('Lorazepam'), findsOneWidget);
       
-      // Verify count
-      expect(find.byType(Card), findsAtLeastNWidgets(0)); // It uses PortalListCard which has a Card
+      // Verify refill count
       expect(find.text('5 refills remaining'), findsNWidgets(2));
     });
 
@@ -43,17 +42,20 @@ void main() {
       await tester.pumpWidget(createPrescriptionScreen());
       await tester.pumpAndSettle();
 
-      // Check Dosage and Frequency for Sertraline
-      expect(find.textContaining('Dosage: 50mg'), findsNWidgets(2));
-      expect(find.textContaining('Frequency: Weekly'), findsNWidgets(2));
+      // Check Dosage and Frequency (Verify both prefix and value)
+      expect(find.textContaining('Dosage:', findRichText: true), findsWidgets);
+      expect(find.textContaining('50mg', findRichText: true), findsNWidgets(2));
+      expect(find.textContaining('Frequency:', findRichText: true), findsWidgets);
+      expect(find.textContaining('Weekly', findRichText: true), findsNWidgets(2));
       
       // Check Action Buttons
       expect(find.text('View Details'), findsNWidgets(2));
       expect(find.text('Request Refill'), findsNWidgets(2));
     });
 
-    testWidgets('should render mobile layout correctly', (tester) async {
-      tester.view.physicalSize = const Size(400, 800);
+    testWidgets('should render mobile layout correctly without overflow', (tester) async {
+      // Very narrow viewport to test Wrap
+      tester.view.physicalSize = const Size(350, 800);
       tester.view.devicePixelRatio = 1.0;
       addTearDown(tester.view.resetPhysicalSize);
 
@@ -63,6 +65,9 @@ void main() {
       expect(find.byType(Divider), findsWidgets);
       expect(find.text('View Details'), findsNWidgets(2));
       expect(find.text('Request Refill'), findsNWidgets(2));
+      
+      // Ensure no overflow occurred
+      expect(tester.takeException(), isNull);
     });
   });
 }

@@ -167,8 +167,10 @@ class _ActionSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+    return Wrap(
+      spacing: 12,
+      runSpacing: 12,
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
         OutlinedButton(
           onPressed: () {},
@@ -177,7 +179,7 @@ class _ActionSection extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           ),
           child: const Text(
             'View Details',
@@ -188,7 +190,6 @@ class _ActionSection extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 12),
         ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
@@ -198,7 +199,7 @@ class _ActionSection extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           ),
           child: const Text(
             'Request Refill',
