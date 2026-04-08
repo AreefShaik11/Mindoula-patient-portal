@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mindoula_patient_portal/modules/account/view/account_screen.dart';
-import 'package:mindoula_patient_portal/modules/account/viewmodel/account_view_model.dart';
 import 'package:mindoula_patient_portal/core/theme/app_typography.dart';
 
 void main() {
@@ -11,6 +10,10 @@ void main() {
 
   group('AccountScreen Widget Tests', () {
     testWidgets('should render title and settings tab content by default', (tester) async {
+      tester.view.physicalSize = const Size(1200, 1200);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.resetPhysicalSize);
+
       await tester.pumpWidget(const ProviderScope(
         child: MaterialApp(
           home: Scaffold(body: AccountScreen()),

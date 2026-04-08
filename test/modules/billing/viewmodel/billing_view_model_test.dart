@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mindoula_patient_portal/modules/billing/viewmodel/billing_view_model.dart';
-import 'package:mindoula_patient_portal/modules/billing/model/billing_model.dart';
 
 void main() {
   group('BillingViewModel', () {

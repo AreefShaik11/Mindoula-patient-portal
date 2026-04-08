@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mindoula_patient_portal/core/routes/app_router.dart';
 import 'package:mindoula_patient_portal/modules/dashboard/view/dashboard_screen.dart';
 import 'package:mindoula_patient_portal/modules/billing/view/billing_screen.dart';

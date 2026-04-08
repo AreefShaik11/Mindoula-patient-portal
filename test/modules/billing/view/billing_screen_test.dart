@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mindoula_patient_portal/modules/billing/view/billing_screen.dart';
-import 'package:mindoula_patient_portal/modules/billing/viewmodel/billing_view_model.dart';
-import 'package:mindoula_patient_portal/modules/billing/model/billing_model.dart';
 import 'package:mindoula_patient_portal/shared/widgets/navigation/portal_tab_bar.dart';
 
 void main() {
